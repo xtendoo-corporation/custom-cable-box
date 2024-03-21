@@ -7,16 +7,12 @@ from odoo import fields, models, api
 class SaleOrder(models.Model):
     _inherit = 'sale.order'
 
-  #  @api.model
-    #  def autoconfirm_sale(self):
-    #     for record in self:
-    #          if record.state == "draft":
-    #             super().action_confirm()
+    @api.model
+    def cron_action_quotation_confirm(self):
+        orders = self.search([('state', 'in', ['draft', 'sent'])])
+        for order in orders:
+            order.action_confirm()
 
     def action_quotation_confirm(self):
-        print("*"*80)
-        print("action_quotation_caonfirm")
-        print("*"*80)
-
-        for order in self.filtered(lambda so: so.state == 'draft'):
+        for order in self.filtered(lambda so: so.state in ['draft', 'sent']):
             order.action_confirm()

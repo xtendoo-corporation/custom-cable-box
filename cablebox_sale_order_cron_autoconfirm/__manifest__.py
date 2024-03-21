@@ -11,6 +11,7 @@
     ],
     "data": [
         "views/sale_order_view.xml",
+        "data/ir_cron.xml",
     ],
     "installable": True,
 }
