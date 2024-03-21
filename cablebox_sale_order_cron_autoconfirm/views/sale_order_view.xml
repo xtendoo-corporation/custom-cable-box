@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<odoo>
+    <record id="model_sale_order_action_confirm" model="ir.actions.server">
+        <field name="name">Confirmar presupuesto</field>
+        <field name="model_id" ref="sale.model_sale_order"/>
+        <field name="binding_model_id" ref="sale.model_sale_order"/>
+        <field name="binding_view_types">form,list</field>
+        <field name="state">code</field>
+        <field name="code">records.action_quotation_confirm()</field>
+    </record>
+</odoo>
