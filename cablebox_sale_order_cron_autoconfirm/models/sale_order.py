@@ -9,10 +9,17 @@ class SaleOrder(models.Model):
 
     @api.model
     def cron_action_quotation_confirm(self):
-        orders = self.search([('state', 'in', ['draft', 'sent'])])
+        orders = self.search([
+            ('state', 'in', ['draft', 'sent']),
+            ('name', 'ilike', 'PED')
+        ])
         for order in orders:
             order.action_confirm()
 
     def action_quotation_confirm(self):
-        for order in self.filtered(lambda so: so.state in ['draft', 'sent']):
+        orders = self.search([
+            ('state', 'in', ['draft', 'sent']),
+            ('name', 'ilike', 'PED')
+        ])
+        for order in orders:
             order.action_confirm()
