@@ -1,0 +1,32 @@
+<odoo>
+    <record id="view_excel_importer_form" model="ir.ui.view">
+        <field name="name">excel.importer.form</field>
+        <field name="model">excel.importer</field>
+        <field name="arch" type="xml">
+            <form string="Import Excel">
+                <sheet>
+                    <group>
+                        <field name="excel_file"/>
+                    </group>
+                    <footer>
+                        <button name="import_excel" string="Import" type="object" class="btn-primary"/>
+                    </footer>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_excel_importer" model="ir.actions.act_window">
+        <field name="name">Import Excel</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">excel.importer</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+
+    <menuitem id="menu_excel_importer"
+              name="Import Excel"
+              action="action_excel_importer"
+              parent="sale.menu_sale_config"
+              sequence="70"/>
+</odoo>
