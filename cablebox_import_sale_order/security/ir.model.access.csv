@@ -1,0 +1,2 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+cablebox_import_sale_order.access_cablebox_sale_order_import,access_cablebox_sale_order_import,cablebox_import_sale_order.model_cablebox_sale_order_import,base.group_user,1,1,1,1

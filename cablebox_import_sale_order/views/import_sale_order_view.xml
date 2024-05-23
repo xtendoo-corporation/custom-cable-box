@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<odoo>
+    <menuitem
+        id="cablebox_import_sale_order_menuitem"
+        name="Cablebox Import Sale Order"
+        action="cablebox_import_sale_order_action"
+        parent="sale.menu_sale_config"
+        sequence="100"
+    />
+</odoo>
+
+

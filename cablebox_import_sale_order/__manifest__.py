@@ -10,7 +10,8 @@
         "sale",
     ],
     "data": [
-        "views/sale_order_view.xml",
+        "wizard/import_sale_order_wizard.xml",
+        "views/import_sale_order_view.xml",
     ],
     "installable": True,
 }

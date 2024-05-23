@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<odoo>
+    <record id="cablebox_import_sale_order_wizard_view" model="ir.ui.view">
+        <field name="name">cablebox.sale.order.import.view</field>
+        <field name="model">cablebox.sale.order.import</field>
+        <field name="arch" type="xml">
+            <form string="Import Sale Order">
+                <group>
+                    <field name="import_file" filename="filename"/>
+                </group>
+                <footer>
+                    <button name="action_import_file" string="Import" type="object" class="oe_highlight"/>
+                    <button string="Cancel" class="oe_link" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="cablebox_import_sale_order_action" model="ir.actions.act_window">
+        <field name="name">Cablebox Import Sale Order</field>
+        <field name="res_model">cablebox.sale.order.import</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+</odoo>
+
+
