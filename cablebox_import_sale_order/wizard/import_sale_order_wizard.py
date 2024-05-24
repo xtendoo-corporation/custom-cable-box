@@ -9,7 +9,7 @@ import urllib3
 
 import uuid
 from ast import literal_eval
-from datetime import date, datetime as dt
+from datetime import datetime
 from io import BytesIO
 
 import xlrd
@@ -56,23 +56,31 @@ class CableboxSaleOrderImport(models.TransientModel):
         book = xlrd.open_workbook(file_contents=decoded_data)
         sheet = book.sheet_by_index(0)
         for row in range(1, sheet.nrows):
-            order = self.env['sale.order'].create({
-                'name': self.get_column_value(sheet, row, 'name'),
-                'date_order': self.get_column_value(sheet, row, 'date_order'),
-                'note': self.get_column_value(sheet, row, 'note'),
-                'client_order_ref': self.get_column_value(sheet, row, 'client_order_ref'),
-                'partner_id': self.env['res.partner'].search(
-                    [('name', '=', self.get_column_value(sheet, row, 'partner_id'))], limit=1).id,
-                'commitment_date': self.get_column_value(sheet, row, 'commitment_date'),
-            })
-            self.env['sale.order.line'].create({
-                'order_id': order.id,
-                'product_id': self.env['product.product'].search(
-                    [('name', '=', self.get_column_value(sheet, row, 'order_line/product_id'))], limit=1).id,
-                'name': self.get_column_value(sheet, row, 'order_line/name'),
-                'product_uom_qty': self.get_column_value(sheet, row, 'order_line/product_uom_qty'),
-                'price_unit': self.get_column_value(sheet, row, 'order_line/price_unit'),
-            })
+            partner_id = self._search_or_create_partner(self.get_column_value(book, sheet, row, 'partner_id'))
+            product_id = self._search_or_create_product(self.get_column_value(book, sheet, row, 'order_line/name'))
+            date_order = self.get_column_value(book, sheet, row, 'date_order')
+
+            print("*"*50)
+            print('partner_id', partner_id)
+            print('product_id', product_id)
+            print("*"*50)
+
+            if partner_id and product_id:
+                order = self.env['sale.order'].create({
+                    'name': self.get_column_value(book, sheet, row, 'name'),
+                    'date_order': date_order,
+                    'partner_id': partner_id.id,
+                    'note': self.get_column_value(book, sheet, row, 'note'),
+                    'client_order_ref': self.get_column_value(book, sheet, row, 'client_order_ref'),
+                    'commitment_date': self.get_column_value(book, sheet, row, 'commitment_date'),
+                })
+                self.env['sale.order.line'].create({
+                    'order_id': order.id,
+                    'product_id': product_id.id,
+                    'name': self.get_column_value(book, sheet, row, 'order_line/name'),
+                    'product_uom_qty': self.get_column_value(book, sheet, row, 'order_line/product_uom_qty'),
+                    'price_unit': self.get_column_value(book, sheet, row, 'order_line/price_unit'),
+                })
 
     def get_column_number(self, sheet, text):
         for col_index in range(sheet.ncols):
@@ -81,8 +89,36 @@ class CableboxSaleOrderImport(models.TransientModel):
                 return col_index
         return None
 
-    def get_column_value(self, sheet, row, text):
+    def get_column_value(self, book, sheet, row, text):
+        print('text', text)
         key = self.get_column_number(sheet, text)
-        if key:
-            return sheet.cell(row, key).value
+        print('key', key)
+        if key is not None:
+            val = sheet.cell_value(row, key)
+            print('val', val)
+
+            cell_type = sheet.cell_type(row, key)
+            print('cell_type', cell_type)
+
+            if cell_type == xlrd.XL_CELL_DATE:  # pragma: no cover
+                print('date', val)
+                return datetime(*xlrd.xldate_as_tuple(val, book.datemode))
+            elif cell_type == xlrd.XL_CELL_BOOLEAN:  # pragma: no cover
+                print('bool', val)
+                return bool(val)
+            else:
+                print('val', val)
+                return val
         return None
+
+    def _search_or_create_partner(self, name):
+        partner_id = self.env['res.partner'].search([('name', '=', name)], limit=1)
+        if not partner_id:
+            partner_id = self.env['res.partner'].create({'name': name})
+        return partner_id
+
+    def _search_or_create_product(self, name):
+        product_id = self.env['product.product'].search([('name', '=', name)], limit=1)
+        if not product_id:
+            product_id = self.env['product.product'].create({'name': name, 'type': 'product'})
+        return product_id
