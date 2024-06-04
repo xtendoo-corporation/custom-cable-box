@@ -60,27 +60,48 @@ class CableboxSaleOrderImport(models.TransientModel):
             product_id = self._search_or_create_product(self.get_column_value(book, sheet, row, 'order_line/name'))
             date_order = self.get_column_value(book, sheet, row, 'date_order')
 
-            print("*"*50)
-            print('partner_id', partner_id)
-            print('product_id', product_id)
-            print("*"*50)
+            # print("*"*50)
+            # print('partner_id', partner_id)
+            # print('product_id', product_id)
+            # print("*"*50)
+
+            commitment_date = self.get_column_value(book, sheet, row, 'commitment_date')
+            # print('commitment_date:', commitment_date)
 
             if partner_id and product_id:
-                order = self.env['sale.order'].create({
-                    'name': self.get_column_value(book, sheet, row, 'name'),
-                    'date_order': date_order,
-                    'partner_id': partner_id.id,
-                    'note': self.get_column_value(book, sheet, row, 'note'),
-                    'client_order_ref': self.get_column_value(book, sheet, row, 'client_order_ref'),
-                    'commitment_date': self.get_column_value(book, sheet, row, 'commitment_date'),
-                })
-                self.env['sale.order.line'].create({
-                    'order_id': order.id,
-                    'product_id': product_id.id,
-                    'name': self.get_column_value(book, sheet, row, 'order_line/name'),
-                    'product_uom_qty': self.get_column_value(book, sheet, row, 'order_line/product_uom_qty'),
-                    'price_unit': self.get_column_value(book, sheet, row, 'order_line/price_unit'),
-                })
+                if commitment_date == "":
+                    # print("+++++++++++++++++commitment_date vacio++++++++++++++++++++++")
+                    order = self.env['sale.order'].create({
+                        'name': self.get_column_value(book, sheet, row, 'name'),
+                        'date_order': date_order,
+                        'partner_id': partner_id.id,
+                        'note': self.get_column_value(book, sheet, row, 'note'),
+                        'client_order_ref': self.get_column_value(book, sheet, row, 'client_order_ref'),
+                    })
+                    self.env['sale.order.line'].create({
+                        'order_id': order.id,
+                        'product_id': product_id.id,
+                        'name': self.get_column_value(book, sheet, row, 'order_line/name'),
+                        'product_uom_qty': self.get_column_value(book, sheet, row, 'order_line/product_uom_qty'),
+                        'price_unit': self.get_column_value(book, sheet, row, 'order_line/price_unit'),
+                    })
+                else:
+                    # print("+++++++++++++++++commitment_date lleno++++++++++++++++++++++")
+                    order = self.env['sale.order'].create({
+                        'name': self.get_column_value(book, sheet, row, 'name'),
+                        'date_order': date_order,
+                        'partner_id': partner_id.id,
+                        'note': self.get_column_value(book, sheet, row, 'note'),
+                        'client_order_ref': self.get_column_value(book, sheet, row, 'client_order_ref'),
+                        'commitment_date': self.get_column_value(book, sheet, row, 'commitment_date'),
+                    })
+                    self.env['sale.order.line'].create({
+                        'order_id': order.id,
+                        'product_id': product_id.id,
+                        'name': self.get_column_value(book, sheet, row, 'order_line/name'),
+                        'product_uom_qty': self.get_column_value(book, sheet, row, 'order_line/product_uom_qty'),
+                        'price_unit': self.get_column_value(book, sheet, row, 'order_line/price_unit'),
+                    })
 
     def get_column_number(self, sheet, text):
         for col_index in range(sheet.ncols):
@@ -90,24 +111,24 @@ class CableboxSaleOrderImport(models.TransientModel):
         return None
 
     def get_column_value(self, book, sheet, row, text):
-        print('text', text)
+        # print('text', text)
         key = self.get_column_number(sheet, text)
-        print('key', key)
+        # print('key', key)
         if key is not None:
             val = sheet.cell_value(row, key)
-            print('val', val)
+            # print('val', val)
 
             cell_type = sheet.cell_type(row, key)
-            print('cell_type', cell_type)
+            # print('cell_type', cell_type)
 
             if cell_type == xlrd.XL_CELL_DATE:  # pragma: no cover
-                print('date', val)
+                # print('date', val)
                 return datetime(*xlrd.xldate_as_tuple(val, book.datemode))
             elif cell_type == xlrd.XL_CELL_BOOLEAN:  # pragma: no cover
-                print('bool', val)
+                # print('bool', val)
                 return bool(val)
             else:
-                print('val', val)
+                # print('val', val)
                 return val
         return None
 

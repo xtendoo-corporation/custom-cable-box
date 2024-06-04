@@ -27,6 +27,11 @@ class ExcelImporter(models.Model):
             book = xlrd.open_workbook(file_contents=decoded_data)
             sheet = book.sheet_by_index(0)
             for row in range(1, sheet.nrows):
+                # print("+++++++++++++++++ANTES DEL IF commitment_date++++++++++++++++++++++")
+                # commitment_date = self.get_column_value(sheet, row, 'commitment_date')
+                # print(commitment_date)
+                # if commitment_date == "":
+                #     print("+++++++++++++++++commitment_date vacio++++++++++++++++++++++")
                 order = self.env['sale.order'].create({
                     'name': self.get_column_value(sheet, row, 'name'),
                     'date_order': self.get_column_value(sheet, row, 'date_order'),
@@ -34,7 +39,6 @@ class ExcelImporter(models.Model):
                     'client_order_ref': self.get_column_value(sheet, row, 'client_order_ref'),
                     'partner_id': self.env['res.partner'].search(
                         [('name', '=', self.get_column_value(sheet, row, 'partner_id'))], limit=1).id,
-                    'commitment_date': self.get_column_value(sheet, row, 'commitment_date'),
                 })
                 self.env['sale.order.line'].create({
                     'order_id': order.id,
@@ -44,6 +48,25 @@ class ExcelImporter(models.Model):
                     'product_uom_qty': self.get_column_value(sheet, row, 'order_line/product_uom_qty'),
                     'price_unit': self.get_column_value(sheet, row, 'order_line/price_unit'),
                 })
+                # else:
+                #     print("+++++++++++++++++commitment_date++++++++++++++++++++++")
+                #     # order = self.env['sale.order'].create({
+                #     #     'name': self.get_column_value(sheet, row, 'name'),
+                #     #     'date_order': self.get_column_value(sheet, row, 'date_order'),
+                #     #     'note': self.get_column_value(sheet, row, 'note'),
+                #     #     'client_order_ref': self.get_column_value(sheet, row, 'client_order_ref'),
+                #     #     'partner_id': self.env['res.partner'].search(
+                #     #         [('name', '=', self.get_column_value(sheet, row, 'partner_id'))], limit=1).id,
+                #     #     'commitment_date': self.get_column_value(sheet, row, 'commitment_date'),
+                #     # })
+                #     # self.env['sale.order.line'].create({
+                #     #     'order_id': order.id,
+                #     #     'product_id': self.env['product.product'].search(
+                #     #         [('name', '=', self.get_column_value(sheet, row, 'order_line/product_id'))], limit=1).id,
+                #     #     'name': self.get_column_value(sheet, row, 'order_line/name'),
+                #     #     'product_uom_qty': self.get_column_value(sheet, row, 'order_line/product_uom_qty'),
+                #     #     'price_unit': self.get_column_value(sheet, row, 'order_line/price_unit'),
+                #     # })
 
     def get_column_number(self, sheet, text):
         for col_index in range(sheet.ncols):
