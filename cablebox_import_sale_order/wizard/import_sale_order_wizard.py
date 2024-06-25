@@ -59,25 +59,21 @@ class CableboxSaleOrderImport(models.TransientModel):
             partner_id = self._search_or_create_partner(self.get_column_value(book, sheet, row, 'partner_id'))
             product_id = self._search_or_create_product(self.get_column_value(book, sheet, row, 'order_line/name'))
             date_order = self.get_column_value(book, sheet, row, 'date_order')
-
-            # print("*"*50)
-            # print('partner_id', partner_id)
-            # print('product_id', product_id)
-            # print("*"*50)
-
             commitment_date = self.get_column_value(book, sheet, row, 'commitment_date')
-            # print('commitment_date:', commitment_date)
 
             if partner_id and product_id:
-                if commitment_date == "":
-                    # print("+++++++++++++++++commitment_date vacio++++++++++++++++++++++")
-                    order = self.env['sale.order'].create({
-                        'name': self.get_column_value(book, sheet, row, 'name'),
-                        'date_order': date_order,
-                        'partner_id': partner_id.id,
-                        'note': self.get_column_value(book, sheet, row, 'note'),
-                        'client_order_ref': self.get_column_value(book, sheet, row, 'client_order_ref'),
-                    })
+                sale_order = {
+                    'name': self.get_column_value(book, sheet, row, 'name'),
+                    'date_order': date_order,
+                    'partner_id': partner_id.id,
+                    'note': self.get_column_value(book, sheet, row, 'note'),
+                    'client_order_ref': self.get_column_value(book, sheet, row, 'client_order_ref'),
+                }
+                if commitment_date != "":
+                    sale_order.update({'commitment_date': commitment_date})
+
+                order = self.env['sale.order'].create(sale_order)
+                if order:
                     self.env['sale.order.line'].create({
                         'order_id': order.id,
                         'product_id': product_id.id,
@@ -85,22 +81,12 @@ class CableboxSaleOrderImport(models.TransientModel):
                         'product_uom_qty': self.get_column_value(book, sheet, row, 'order_line/product_uom_qty'),
                         'price_unit': self.get_column_value(book, sheet, row, 'order_line/price_unit'),
                     })
-                else:
-                    # print("+++++++++++++++++commitment_date lleno++++++++++++++++++++++")
-                    order = self.env['sale.order'].create({
-                        'name': self.get_column_value(book, sheet, row, 'name'),
+
+                    if "PED" in order.name:
+                        order.action_confirm()
+
+                    order.update({
                         'date_order': date_order,
-                        'partner_id': partner_id.id,
-                        'note': self.get_column_value(book, sheet, row, 'note'),
-                        'client_order_ref': self.get_column_value(book, sheet, row, 'client_order_ref'),
-                        'commitment_date': self.get_column_value(book, sheet, row, 'commitment_date'),
-                    })
-                    self.env['sale.order.line'].create({
-                        'order_id': order.id,
-                        'product_id': product_id.id,
-                        'name': self.get_column_value(book, sheet, row, 'order_line/name'),
-                        'product_uom_qty': self.get_column_value(book, sheet, row, 'order_line/product_uom_qty'),
-                        'price_unit': self.get_column_value(book, sheet, row, 'order_line/price_unit'),
                     })
 
     def get_column_number(self, sheet, text):
