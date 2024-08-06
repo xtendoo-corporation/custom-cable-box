@@ -1,24 +1,12 @@
-# Copyright 2023 Camilo Prado
+# Copyright 2024 Manuel Calero (<https://xtendoo.es>).
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 import logging
 import base64
-import requests
-import certifi
-import urllib3
-
-
-import uuid
-from ast import literal_eval
-from datetime import datetime
-from io import BytesIO
-
 import xlrd
-import xlwt
 
+from datetime import datetime
 from odoo import _, fields, api, models
 from odoo.exceptions import ValidationError
-from odoo.tools.float_utils import float_compare
-from odoo.tools.safe_eval import safe_eval
 
 _logger = logging.getLogger(__name__)
 
@@ -102,19 +90,12 @@ class CableboxSaleOrderImport(models.TransientModel):
         # print('key', key)
         if key is not None:
             val = sheet.cell_value(row, key)
-            # print('val', val)
-
             cell_type = sheet.cell_type(row, key)
-            # print('cell_type', cell_type)
-
             if cell_type == xlrd.XL_CELL_DATE:  # pragma: no cover
-                # print('date', val)
                 return datetime(*xlrd.xldate_as_tuple(val, book.datemode))
             elif cell_type == xlrd.XL_CELL_BOOLEAN:  # pragma: no cover
-                # print('bool', val)
                 return bool(val)
             else:
-                # print('val', val)
                 return val
         return None
 
