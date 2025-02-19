@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <template
+        id="cablebox_sale_order_report.report_saleorder_document_inherit"
+        inherit_id="sale.report_saleorder_document"
+    >
+        <xpath expr="//thead[1]" position="attributes">
+            <attribute name="style">display: table-header-group</attribute>
+        </xpath>
+
+        <xpath expr="//t[1]/t[3]" position="inside">
+            <t t-if="doc.opportunity_id.contact_name">
+                <span>ATT DE:</span>
+                <span t-field="doc.opportunity_id.contact_name"/>
+            </t>
+        </xpath>
+
+        <xpath expr="." position="inside">
+            <link rel="stylesheet" href="/cablebox_sale_order_report/static/src/css/report_styles.css"/>
+        </xpath>
+
+        <xpath expr="//td[@name='td_name']" position="inside">
+            <span t-field="line.product_id.description"/>
+        </xpath>
+
+        <xpath expr="//td[@name='td_quantity']/span[1]" position="replace">
+            <span t-esc="int(line.product_uom_qty)"/>
+        </xpath>
+
+        <xpath expr="//td[@name='td_quantity']/span[2]" position="replace"/>
+
+        <xpath expr="//th[@name='th_quantity']" position="replace">
+            <th name="th_quantity" class="text-center">CANTIDAD UD</th>
+        </xpath>
+
+        <xpath expr="//th[@name='th_priceunit']" position="replace">
+            <th name="th_priceunit" class="text-center">PRECIO</th>
+        </xpath>
+
+        <xpath expr="//div[@id='informations']" position="replace">
+            <div class="row mt-4 mb-4" id="informations">
+                <div t-if="doc.date_order" class="col-auto col-3 mw-100 mb-2" name="informations_date">
+                    <strong t-if="doc.state in ['draft', 'sent']">Fecha de presupuesto:</strong>
+                    <strong t-else="">Fecha de pedido:</strong>
+                    <p class="m-0" t-field="doc.date_order" t-options='{"widget": "date"}'/>
+                </div>
+                <div t-if="doc.user_id.name" class="col-auto col-3 mw-100 mb-2">
+                    <strong>Key Account Manager:</strong>
+                    <p class="m-0" t-field="doc.user_id"/>
+                </div>
+            </div>
+        </xpath>
+
+        <xpath expr="//t[1]/div[1]/div[5]" position="after">
+            <div style="margin-top: 20px;">
+                <strong style="font-size:15px;">Para mantenerte informado de nuestras noticias y novedades síguenos en
+                    nuestra página de LinkedLin
+                </strong>
+                <a href="https://www.linkedin.com/company/palazzoli/">
+                    <img
+                        src="cablebox_sale_order_report/static/src/img/linkedin.png" style="width:30px;height:30px;"/>
+                </a>
+            </div>
+        </xpath>
+
+        <xpath expr="//t[1]/div[1]/div[5]" position="after">
+            <p>
+                Validez de la oferta: 30 días
+                <br/>
+                Embalaje: Nuestro estándar incluido en el precio.
+                <br/>
+                Pago: A convenir.
+                <br/>
+                Transporte: Portes pagados en territorio nacional para importes superiores a €500 (solo dentro de las
+                fronteras nacionales).
+                <br/>
+                Para importes inferiores el pago de los portes van con cargo en factura.
+                <br/>
+                Fecha de entrega: a convenir con el cliente.
+            </p>
+        </xpath>
+    </template>
+
+</odoo>
