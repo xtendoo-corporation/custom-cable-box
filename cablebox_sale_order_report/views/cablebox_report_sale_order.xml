@@ -34,7 +34,40 @@
         </xpath>
 
         <xpath expr="//th[@name='th_priceunit']" position="replace">
-            <th name="th_priceunit" class="text-center">PRECIO</th>
+            <th name="th_priceunit" class="text-center">PRECIO €</th>
+        </xpath>
+
+        <xpath expr="//th[@name='th_subtotal']" position="replace">
+            <th name="th_subtotal" class="text-center">
+                <span groups="account.group_show_line_subtotals_tax_excluded">Importe €</span>
+                <span groups="account.group_show_line_subtotals_tax_included">Precio total</span>
+            </th>
+        </xpath>
+
+        <xpath expr="//th[@name='th_taxes']" position="replace">
+        </xpath>
+
+        <xpath expr="//td[@name='td_taxes']" position="replace">
+        </xpath>
+
+        <xpath expr="//td[@name='td_quantity']" position="replace">
+            <td name="td_quantity" class="text-center">
+                <span t-field="line.product_uom_qty"/>
+                <span t-field="line.product_uom"/>
+            </td>
+        </xpath>
+
+         <xpath expr="//td[@name='td_priceunit']" position="replace">
+             <td name="td_priceunit" class="text-center">
+                 <span t-field="line.price_unit"/>
+             </td>
+        </xpath>
+
+        <xpath expr="//td[@name='td_subtotal']" position="replace">
+            <td t-if="not line.is_downpayment" name="td_subtotal" class="text-center o_price_total">
+                <span t-field="line.price_subtotal" groups="account.group_show_line_subtotals_tax_excluded"/>
+                <span t-field="line.price_total" groups="account.group_show_line_subtotals_tax_included"/>
+            </td>
         </xpath>
 
         <xpath expr="//div[@id='informations']" position="replace">
