@@ -1,7 +1,7 @@
 {
     "name": "Cablebox",
     "summary": "Auto confirm sale order",
-    "version": "16.0.1.0.0",
+    "version": "17.0.1.0.0",
     "category": "Sale order",
     "author": "Salvador Gonzalez,Manuel Calero,Abraham Carrasco, Xtendoo",
     "license": "LGPL-3",
