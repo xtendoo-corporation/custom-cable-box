@@ -9,3 +9,49 @@
     font-family: 'Montserrat', sans-serif;
 }
 
+/* Image column - first column */
+.o_main_table th:first-child,
+.o_main_table td:first-child {
+    width: 80px !important;
+    max-width: 80px !important;
+    overflow: hidden !important;
+}
+
+/* Scale images inside the first column */
+.o_main_table td:first-child img {
+    width: 100% !important;
+    max-width: 70px !important;
+    height: auto !important;
+    object-fit: contain !important;
+}
+
+/* Description column */
+.o_main_table th[name="th_description"],
+.o_main_table td[name="td_name"] {
+    width: 40% !important;
+    max-width: 40% !important;
+    overflow: hidden !important;
+    word-wrap: break-word !important;
+}
+
+/* Table headers styling - bold, slightly larger font and blue color */
+.o_main_table th {
+    font-size: 14px !important;
+    font-weight: bold !important;
+    color: rgb(0, 95, 170) !important;
+}
+
+/* Table data cells - same font size as headers */
+.o_main_table td {
+    font-size: 14px !important;
+}
+
+/* Move document title and client info upward */
+h2 {
+    margin-top: -10px !important;
+}
+
+/* Reduce spacing in address block */
+.address {
+    margin-top: -15px !important;
+}
