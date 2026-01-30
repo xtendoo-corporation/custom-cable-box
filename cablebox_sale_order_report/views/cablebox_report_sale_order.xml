@@ -101,7 +101,21 @@
                 nacional para importes superiores a €500 (solo dentro de las fronteras nacionales). <br />
                 Para importes inferiores el pago de los portes van con cargo en factura. <br />
                 Fecha de entrega: a convenir con el cliente. </p>
-        </xpath>
-    </template>
 
+        </xpath>
+
+
+        <xpath expr="//span[@name='order_note']" position="replace">
+            <div t-if="doc.note" class="row mt-3 mb-3">
+                <div class="col-12">
+                    <strong>Notas complementarias</strong>
+                    <div
+                        style="border-top: 1px dashed #000; border-bottom: 1px dashed #000; padding: 10px 0; min-height: 50px;">
+                        <span t-field="doc.note" />
+                    </div>
+                </div>
+            </div>
+        </xpath>
+
+    </template>
 </odoo>
