@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Añadir campo Plazo de entrega en las líneas de pedido -->
+    <record id="view_order_form_line_sale_delay" model="ir.ui.view">
+        <field name="name">sale.order.form.line.sale_delay</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='order_line']/list//field[@name='price_unit']"
+                position="after">
+                <field name="product_sale_delay" string="Plazo" optional="show" />
+            </xpath>
+        </field>
+    </record>
+</odoo>
