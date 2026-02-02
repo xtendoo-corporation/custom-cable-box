@@ -128,14 +128,8 @@ def parse_xlsx_products(file_data):
             if barcode and barcode != "None":
                 product_data["barcode"] = barcode
 
-        # Precio de coste
-        if "standard_price" in col_indices and row[col_indices["standard_price"]]:
-            try:
-                product_data["standard_price"] = float(
-                    row[col_indices["standard_price"]]
-                )
-            except (ValueError, TypeError):
-                pass
+        # Precio de coste - siempre 0
+        product_data["standard_price"] = 0
 
         # Precio de venta
         if "list_price" in col_indices and row[col_indices["list_price"]]:
