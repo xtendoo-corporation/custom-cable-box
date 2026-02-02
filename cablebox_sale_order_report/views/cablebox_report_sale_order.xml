@@ -15,6 +15,22 @@
             </t>
         </xpath>
 
+        <!-- Mover la dirección del cliente a la derecha -->
+        <xpath expr="//t[@t-set='address']" position="replace">
+            <t t-set="address">
+                <div class="offset-5">
+                    <div t-field="doc.partner_id"
+                        t-options='{"widget": "contact", "fields": ["address", "name"], "no_marker": True}' />
+                    <p t-if="doc.partner_id.vat">
+                        <t t-if="doc.company_id.account_fiscal_country_id.vat_label"
+                            t-out="doc.company_id.account_fiscal_country_id.vat_label" />
+                        <t
+                            t-else="">NIF</t>: <span t-field="doc.partner_id.vat" />
+                    </p>
+                </div>
+            </t>
+        </xpath>
+
         <xpath expr="." position="inside">
             <link rel="stylesheet"
                 href="/cablebox_sale_order_report/static/src/css/report_styles.css" />
@@ -74,24 +90,15 @@
                     <strong t-else="">Fecha de pedido:</strong>
                     <p class="m-0" t-field="doc.date_order" t-options='{"widget": "date"}' />
                 </div>
-                <div t-if="doc.user_id.name" class="col-3 offset-3 mb-2">
+                <div t-if="doc.x_proyecto" class="col-3 offset-1 mb-2 text-center">
+                    <strong>Proyecto:</strong>
+                    <p class="m-0" t-field="doc.x_proyecto" />
+                </div>
+                <div t-if="doc.user_id.name"
+                    t-attf-class="col-3 mb-2 {{ 'offset-6' if not doc.x_proyecto else 'offset-2' }}">
                     <strong>Key Account Manager:</strong>
                     <p class="m-0" t-field="doc.user_id" />
                 </div>
-            </div>
-        </xpath>
-
-        <xpath expr="//t[1]/div[1]/div[5]" position="after">
-            <div style="margin-top: 20px;">
-                <strong style="font-size:15px;">Para mantenerte informado de nuestras noticias y
-                    novedades síguenos en
-                    nuestra página de LinkedLin
-                </strong>
-                <a href="https://www.linkedin.com/company/palazzoli/">
-                    <img
-                        src="cablebox_sale_order_report/static/src/img/linkedin.png"
-                        style="width:30px;height:30px;" />
-                </a>
             </div>
         </xpath>
 
@@ -102,19 +109,6 @@
                 Para importes inferiores el pago de los portes van con cargo en factura. <br />
                 Fecha de entrega: a convenir con el cliente. </p>
 
-        </xpath>
-
-
-        <xpath expr="//span[@name='order_note']" position="replace">
-            <div t-if="doc.note" class="row mt-3 mb-3">
-                <div class="col-12">
-                    <strong>Notas complementarias</strong>
-                    <div
-                        style="border-top: 1px dashed #000; border-bottom: 1px dashed #000; padding: 10px 0; min-height: 50px;">
-                        <span t-field="doc.note" />
-                    </div>
-                </div>
-            </div>
         </xpath>
 
     </template>
