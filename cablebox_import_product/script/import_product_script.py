@@ -77,6 +77,7 @@ def parse_xlsx_products(file_data):
         "CANTIDAD MÍNIMA": "qty_min",
         "FAMILIA DE DESCUENTO": "discount_family",
         "FAMILIA DE PRODUCTO": "product_family",
+        "PLAZOS DE ENTREGA": "delivery_lead_time",
     }
 
     # Encontrar índices de columnas
@@ -86,6 +87,9 @@ def parse_xlsx_products(file_data):
             if xlsx_col in header:
                 col_indices[odoo_field] = idx
                 break
+
+    print(f"=== Headers encontrados en Excel: {list(headers.keys())}")
+    print(f"=== Columnas mapeadas: {list(col_indices.keys())}")
 
     if "default_code" not in col_indices:
         workbook.close()
@@ -158,6 +162,22 @@ def parse_xlsx_products(file_data):
             product_family = str(row[col_indices["product_family"]]).strip()
             if product_family and product_family != "None":
                 product_data["product_family"] = product_family
+
+        # Plazo de entrega (sale_delay) - 'd' significa 25 días
+        if (
+            "delivery_lead_time" in col_indices
+            and row[col_indices["delivery_lead_time"]]
+        ):
+            lead_time_value = (
+                str(row[col_indices["delivery_lead_time"]]).strip().lower()
+            )
+            if lead_time_value == "d":
+                product_data["sale_delay"] = 25
+            elif lead_time_value and lead_time_value != "none":
+                try:
+                    product_data["sale_delay"] = int(float(lead_time_value))
+                except (ValueError, TypeError):
+                    pass
 
         products.append(product_data)
 
