@@ -44,8 +44,22 @@
         <field name="model">sale.order</field>
         <field name="inherit_id" ref="sale.view_order_form" />
         <field name="arch" type="xml">
-            <xpath expr="//group[@name='sale_reporting']/field[@name='origin']" position="after">
+            <!-- Ocultar partner_shipping_id -->
+            <xpath expr="//field[@name='partner_shipping_id']" position="replace">
                 <field name="x_proyecto" string="Proyecto" />
+            </xpath>
+
+        </field>
+    </record>
+
+
+    <!-- Vista adicional para añadir Ref. SAP en el formulario base -->
+    <record id="view_order_form_inherit_cablebox_refsap" model="ir.ui.view">
+        <field name="name">sale.order.form.inherit.cablebox.refsap</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//group[@name='sale_reporting']/field[@name='origin']" position="after">
                 <field name="x_ref_sap" string="Ref. SAP" />
             </xpath>
         </field>

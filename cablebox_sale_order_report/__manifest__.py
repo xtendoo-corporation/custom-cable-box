@@ -5,7 +5,7 @@
     "category": "Sale",
     "author": "Xtendoo",
     "license": "AGPL-3",
-    "depends": ["sale"],
+    "depends": ["sale", "sale_management"],
     "data": ["views/cablebox_report_sale_order.xml", "views/sale_order.xml"],
     "assets": {
         "web.report_assets_pdf": [
