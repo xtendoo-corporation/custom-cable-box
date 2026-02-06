@@ -66,12 +66,12 @@ h2 {
 
 /* Borde superior de la tabla en todas las páginas */
 .o_main_table thead {
-  border-top: 1px solid #dee2e6 !important;
+  border-top: 1px solid #333333 !important;
 }
 
 .o_main_table thead th {
-  border-top: 1px solid #dee2e6 !important;
-  border-bottom: 2px solid #dee2e6 !important;
+  border-top: 1px solid #333333 !important;
+  border-bottom: 2px solid #333333 !important;
 }
 
 /* Asegurar que el header se repita en todas las páginas con borde */
@@ -80,5 +80,6 @@ h2 {
 }
 
 .o_main_table thead tr {
-  border-top: 1px solid #dee2e6 !important;
+  border-top: 1px solid #333333 !important;
 }
+
