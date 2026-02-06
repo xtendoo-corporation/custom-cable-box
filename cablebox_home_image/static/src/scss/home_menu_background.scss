@@ -1,0 +1,74 @@
+// Cablebox Home Menu Background
+// Estilos para añadir una imagen de fondo al Apps Menu de Odoo 18
+// Compatible con web_responsive
+
+// Sobrescribir la variable CSS del fondo del menú de apps
+:root {
+  .o_grid_apps_menu[data-theme="milk"],
+  .o_grid_apps_menu[data-theme="community"],
+  .o_grid_apps_menu {
+    --app-menu-background: url("/cablebox_home_image/static/description/fondo.png") !important;
+  }
+}
+
+// Aplicar estilos al contenedor del menú de apps
+.app-menu-container {
+  position: relative;
+  background-color: #ffffff !important; // Color gris para rellenar áreas sin imagen
+  background-image: var(--app-menu-background) !important;
+  background-size: contain !important;
+  background-position: top center !important;
+  background-repeat: no-repeat !important;
+  // Altura completa sin desbordar
+  min-height: calc(100vh - 46px) !important;
+  max-width: 100vw !important;
+  overflow: hidden !important;
+
+  // Overlay semi-transparente para mejorar la legibilidad
+  &::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.2);
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  // Asegurar que el contenido esté por encima del overlay
+  > * {
+    position: relative;
+    z-index: 1;
+  }
+}
+
+// Fallback para Odoo sin web_responsive
+.o_home_menu:not(.app-menu-container) {
+  position: relative;
+  background-image: url("/cablebox_home_image/static/description/fondo.png") !important;
+  background-size: cover !important;
+  background-position: center !important;
+  background-repeat: no-repeat !important;
+  min-height: 100vh !important;
+  max-width: 100vw !important;
+  overflow: hidden !important;
+
+  &::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.2);
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  > * {
+    position: relative;
+    z-index: 1;
+  }
+}
