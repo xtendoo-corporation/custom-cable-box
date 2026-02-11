@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="view_picking_list_inherit_cablebox" model="ir.ui.view">
+        <field name="name">stock.picking.list.inherit.cablebox</field>
+        <field name="model">stock.picking</field>
+        <field name="inherit_id" ref="stock.vpicktree" />
+        <field name="arch" type="xml">
+            <!-- Ocultar columna de compañía -->
+            <xpath expr="//field[@name='company_id'][@groups='base.group_multi_company']"
+                position="replace" />
+            <xpath expr="//field[@name='origin']" position="before">
+                <field name="x_proyecto" string="Proyecto" optional="show" />
+            </xpath>
+            <!-- Añadir Ref. SAP después de Origen -->
+            <xpath expr="//field[@name='origin']" position="after">
+                <field name="x_ref_sap" string="Ref. SAP" optional="show" />
+            </xpath>
+        </field>
+    </record>
+
+</odoo>
