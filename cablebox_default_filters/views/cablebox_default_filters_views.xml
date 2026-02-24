@@ -21,10 +21,12 @@
         <field name="name">cablebox.default.filters.tree</field>
         <field name="model">ir.filters</field>
         <field name="arch" type="xml">
-            <list string="Mis Filtros por Defecto" editable="bottom" create="0">
+            <list string="Mis Filtros por Defecto" type="object" action="action_open_target_model"
+                create="0">
                 <field name="name" readonly="1" />
                 <field name="model_id" readonly="1" />
             </list>
+
         </field>
     </record>
 
