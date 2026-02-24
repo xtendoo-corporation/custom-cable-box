@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Menú raíz independiente para que los usuarios sin grupo de "Ajustes" puedan acceder -->
+    <!-- Se deja un ícono base genérico (fa-cog) si el tema o web_enterprise lo soportan,
+         o sino simplemente la P no tendrá icono personalizado. -->
+    <menuitem id="menu_cablebox_user_preferences_root"
+        name="Filtros"
+        sequence="99999999"
+        web_icon="cablebox_default_filters,static/description/icon_white.png" />
+
+    <menuitem id="menu_cablebox_default_filters"
+        name="Mis Filtros por Defecto"
+        parent="menu_cablebox_user_preferences_root"
+        action="action_cablebox_default_filters"
+        sequence="10" />
+</odoo>
