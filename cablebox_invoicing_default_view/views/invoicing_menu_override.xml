@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Acción personalizada para abrir Pedidos a Facturar en vista Kanban por defecto -->
+    <record id="action_invoicing_orders_to_invoice_kanban" model="ir.actions.act_window">
+        <field name="name">Pedidos a Facturar</field>
+        <field name="res_model">sale.order</field>
+        <field name="view_mode">kanban,list,form,calendar,graph,pivot,activity</field>
+        <field name="context">{'create': False}</field>
+        <field name="domain">[('invoice_status','=','to invoice')]</field>
+        <field name="search_view_id" ref="sale.view_sales_order_filter" />
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                No hay pedidos para facturar
+            </p>
+            <p> Puedes seleccionar todos los pedidos y facturarlos en lote,<br /> o revisar cada
+                pedido y facturarlos uno a uno. </p>
+        </field>
+    </record>
+
+    <!-- Menú que se posiciona primero en Facturación para ser la vista por defecto al entrar a la
+    app -->
+    <menuitem id="menu_cablebox_orders_to_invoice_default"
+        name="Pedidos a Facturar"
+        parent="account.menu_finance"
+        action="action_invoicing_orders_to_invoice_kanban"
+        sequence="0" />
+</odoo>
