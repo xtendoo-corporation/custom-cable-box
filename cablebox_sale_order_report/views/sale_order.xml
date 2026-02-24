@@ -64,4 +64,18 @@
             </xpath>
         </field>
     </record>
+    <!-- Add search fields to Sale Order search view -->
+    <record id="view_sales_order_filter_inherit_cablebox" model="ir.ui.view">
+        <field name="name">sale.order.search.inherit.cablebox</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_sales_order_filter" />
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='name']" position="after">
+                <field name="x_ref_sap" string="Ref. SAP"
+                    filter_domain="[('x_ref_sap', 'ilike', self)]" />
+                <field name="origin" string="Documento origen"
+                    filter_domain="[('origin', 'ilike', self)]" />
+            </xpath>
+        </field>
+    </record>
 </odoo>
