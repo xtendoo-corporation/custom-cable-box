@@ -4,14 +4,16 @@
         <field name="name">Mis Filtros por Defecto</field>
         <field name="res_model">ir.filters</field>
         <field name="view_mode">list,form</field>
-        <field name="domain">[('user_id', '=', uid), ('is_default', '=', True), ('model_id', 'in', ['purchase.order', 'sale.order', 'account.move', 'stock.picking'])]</field>
+        <field name="domain">[('user_id', '=', uid), ('is_default', '=', True), ('model_id', 'in',
+            ['purchase.order', 'sale.order', 'account.move', 'stock.picking'])]</field>
         <field name="help" type="html">
-          <p class="o_view_nocontent_smiling_face">
-            Aún no tienes filtros por defecto.
-          </p>
-          <p>
-            Ve a Compras, Ventas, Facturación o Inventario, crea un filtro y guárdalo como "Por defecto". Aparecerá aquí.
-          </p>
+            <p class="o_view_nocontent_smiling_face">
+                Aún no tienes filtros por defecto.
+            </p>
+            <p>
+                Ve a Compras, Ventas, Facturación o Inventario, crea un filtro y guárdalo como "Por
+                defecto". Aparecerá aquí.
+            </p>
         </field>
     </record>
 
@@ -22,17 +24,14 @@
             <list string="Mis Filtros por Defecto" editable="bottom" create="0">
                 <field name="name" readonly="1" />
                 <field name="model_id" readonly="1" />
-                <!-- action_id nos puede ayudar a saber en qué vista está si el modelo tiene varias -->
-                <field name="action_id" readonly="1" optional="show" />
-                <field name="is_default" widget="boolean_toggle" />
             </list>
         </field>
     </record>
 
     <record id="action_cablebox_default_filters_tree" model="ir.actions.act_window.view">
-        <field name="sequence" eval="1"/>
+        <field name="sequence" eval="1" />
         <field name="view_mode">list</field>
-        <field name="view_id" ref="view_cablebox_default_filters_tree"/>
-        <field name="act_window_id" ref="action_cablebox_default_filters"/>
+        <field name="view_id" ref="view_cablebox_default_filters_tree" />
+        <field name="act_window_id" ref="action_cablebox_default_filters" />
     </record>
 </odoo>
