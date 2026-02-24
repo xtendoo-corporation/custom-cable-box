@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Modify Form View to move 'origin' -->
+    <record id="view_purchase_order_form_move_origin" model="ir.ui.view">
+        <field name="name">purchase.order.form.move.origin</field>
+        <field name="model">purchase.order</field>
+        <field name="inherit_id" ref="purchase.purchase_order_form" />
+        <field name="arch" type="xml">
+            <!-- Hide it from the 'Otra Información' tab -->
+            <xpath expr="//page[@name='purchase_delivery_invoice']//field[@name='origin']"
+                position="attributes">
+                <attribute name="invisible">True</attribute>
+            </xpath>
+            <!-- Add it under 'Referencia de proveedor' -->
+            <xpath expr="//field[@name='partner_ref']" position="after">
+                <field name="origin" string="Documento origen" />
+            </xpath>
+        </field>
+    </record>
+</odoo>
