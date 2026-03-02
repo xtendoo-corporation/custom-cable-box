@@ -1,6 +1,6 @@
 {
-    "name": "cablebox Import Product",
-    "summary": "Wizard para importar productos",
+    "name": "Cablebox - Poner Costes a 0",
+    "summary": "Wizard para poner a 0 el coste de todos los productos",
     "version": "18.0.1.0.0",
     "category": "Inventory",
     "author": "Guillermo Barcena Lopez",
