@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <!--
+        Inherit the Sale Order Type form view to make sequence_id dynamically
+        required when the company setting 'sale_order_type_mandatory_prefix' is enabled.
+        'sequence_id_required' is a computed field that reads the company setting.
+        The server-side @api.constrains also enforces this rule as a safety net.
+    -->
+    <record id="sale_order_type_form_view_mandatory_prefix" model="ir.ui.view">
+        <field name="name">sale.order.type.form.view.mandatory.prefix</field>
+        <field name="model">sale.order.type</field>
+        <field name="inherit_id" ref="sale_order_type.sot_sale_order_type_form_view" />
+        <field name="arch" type="xml">
+            <field name="sequence_id" position="replace">
+                <!-- sequence_id_required is a computed Boolean that is True
+                     when the company has 'sale_order_type_mandatory_prefix' enabled -->
+                <field name="sequence_id_required" invisible="1" />
+                <field
+                    name="sequence_id"
+                    required="sequence_id_required"
+                />
+            </field>
+        </field>
+    </record>
+</odoo>
+

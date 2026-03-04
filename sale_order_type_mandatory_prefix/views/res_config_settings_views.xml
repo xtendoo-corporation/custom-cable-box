@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="res_config_settings_view_form" model="ir.ui.view">
+        <field name="name">res.config.settings.view.form.sale.order.type.mandatory.prefix</field>
+        <field name="model">res.config.settings</field>
+        <field name="inherit_id" ref="sale.res_config_settings_view_form" />
+        <field name="arch" type="xml">
+            <setting id="sale_order_type_required" position="after">
+                <setting
+                    id="sale_order_type_mandatory_prefix"
+                    company_dependent="1"
+                    help="If checked, the sequence (prefix) field will be empty by default and required when creating or editing a Sale Order Type."
+                    groups="base.group_erp_manager"
+                >
+                    <field name="sale_order_type_mandatory_prefix" />
+                    <label for="sale_order_type_mandatory_prefix" string="Mandatory Sequence Prefix on Sale Order Type" />
+                    <div class="text-muted">
+                        If enabled, the sequence (prefix) will be blank by default
+                        and required on Sale Order Type forms.
+                    </div>
+                </setting>
+            </setting>
+        </field>
+    </record>
+</odoo>
+
