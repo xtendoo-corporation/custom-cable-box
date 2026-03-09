@@ -11,6 +11,7 @@
                 <attribute name="editable">top</attribute>
             </xpath>
             <xpath expr="//list/field[last()]" position="after">
+                <field name="sale_id" string="Pedido de Cliente" optional="show" />
                 <field name="custom_purchase_id" string="Documento de Compra" optional="show" />
             </xpath>
         </field>

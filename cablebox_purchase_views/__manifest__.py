@@ -4,7 +4,7 @@
     "category": "Purchases",
     "summary": "Customizations for Purchase module views for Cablebox",
     "author": "Cablebox",
-    "depends": ["purchase", "stock"],
+    "depends": ["purchase", "stock", "sale_stock"],
     "data": [
         "views/purchase_order_views.xml",
         "views/stock_picking_views.xml",
