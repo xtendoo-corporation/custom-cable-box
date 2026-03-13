@@ -1,3 +1,15 @@
+from odoo import models, fields
+
+
+class StockPicking(models.Model):
+    _inherit = "stock.picking"
+
+    x_sale_origin = fields.Char(
+        related='sale_id.origin',
+        string='Documento origen',
+        store=True,
+        readonly=True,
+    )
 # Copyright 2025 Cablebox
 from odoo import fields, models
 
