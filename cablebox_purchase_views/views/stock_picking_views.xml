@@ -12,11 +12,11 @@
             </xpath>
             <xpath expr="//list/field[last()]" position="after">
                 <field name="sale_id" string="Pedido de Cliente" optional="show" />
-                <field name="custom_purchase_id" string="Documento de Compra" optional="show" />
+                <field name="purchase_origin" string="Documento origen Compra" optional="show" />
             </xpath>
             <!-- Reemplazar la columna 'origin' por el campo relacionado 'x_sale_origin' -->
             <xpath expr="//list/field[@name='origin']" position="replace">
-                <field name="x_sale_origin" string="Documento origen" optional="show"/>
+                <field name="x_sale_origin" string="Documento origen Venta" optional="show" />
             </xpath>
         </field>
     </record>
