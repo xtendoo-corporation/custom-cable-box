@@ -1,7 +1,7 @@
 {
-    "name": "Cablebox - Poner Costes a 0",
-    "summary": "Wizard para poner a 0 el coste de todos los productos",
-    "version": "18.0.1.0.0",
+    "name": "Cablebox - Actualizar Costes",
+    "summary": "Wizard para actualizar el coste de los productos desde Excel",
+    "version": "18.0.1.1.0",
     "category": "Inventory",
     "author": "Guillermo Barcena Lopez",
     "license": "AGPL-3",

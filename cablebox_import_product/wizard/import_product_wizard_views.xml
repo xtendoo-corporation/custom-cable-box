@@ -4,14 +4,27 @@
         <field name="name">import.product.wizard.form</field>
         <field name="model">import.product.wizard</field>
         <field name="arch" type="xml">
-            <form string="Poner Costes a 0">
-                <group>
-                    <p class="text-danger"> Esta acción buscará todos los productos del sistema y
-                        pondrá su Coste (standard_price) a 0.00. <br /> ¿Desea continuar? </p>
-                </group>
+            <form string="Actualizar Costes">
+                <sheet>
+                    <group>
+                        <p>Suba un archivo Excel para actualizar los costes de los productos basándose en el "CÓDIGO DE PRODUCTO" (Ref. Interna) y "PRECIO DE COSTE".</p>
+                    </group>
+                    <group>
+                        <field name="filename" invisible="1" />
+                        <field name="data_file" filename="filename" string="Archivo Excel" />
+                    </group>
+                    <hr />
+                    <group>
+                        <p class="text-danger">
+                            <strong>Atención:</strong> La opción "Poner a 0" buscará todos los productos del sistema y pondrá su coste a 0.00.
+                        </p>
+                    </group>
+                </sheet>
                 <footer>
-                    <button name="action_import" string="Poner a 0" type="object"
+                    <button name="action_import" string="Actualizar desde Excel" type="object"
                         class="btn-primary" />
+                    <button name="action_reset_to_zero" string="Poner a 0" type="object"
+                        class="btn-danger" confirm="¿Está seguro de que desea poner a 0 el coste de TODOS los productos?" />
                     <button string="Cancelar" class="btn-secondary" special="cancel" />
                 </footer>
             </form>
@@ -19,7 +32,7 @@
     </record>
 
     <record id="action_import_product_wizard" model="ir.actions.act_window">
-        <field name="name">Poner Costes a 0</field>
+        <field name="name">Actualizar Costes</field>
         <field name="res_model">import.product.wizard</field>
         <field name="view_mode">form</field>
         <field name="target">new</field>

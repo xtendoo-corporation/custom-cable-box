@@ -8,10 +8,83 @@ from odoo.exceptions import UserError
 
 class ImportProductWizard(models.TransientModel):
     _name = "import.product.wizard"
-    _description = "Poner Costes a 0"
+    _description = "Actualizar Costes desde Excel"
+
+    data_file = fields.Binary(string="Archivo Excel", required=True)
+    filename = fields.Char(string="Nombre del Archivo")
 
     def action_import(self):
-        """Pone a 0 el coste de todos los productos."""
+        """Actualiza los costes de los productos desde un archivo Excel."""
+        if not self.data_file:
+            raise UserError(_("Por favor, suba un archivo Excel."))
+
+        try:
+            import io
+            import openpyxl
+
+            # Cargar el archivo Excel
+            file_data = base64.b64decode(self.data_file)
+            wb = openpyxl.load_workbook(io.BytesIO(file_data), data_only=True)
+            sheet = wb.active
+
+            updated_count = 0
+            not_found_codes = []
+
+            # Iterar sobre las filas (saltando la cabecera)
+            # Columna B (index 2): CÓDIGO DE PRODUCTO
+            # Columna J (index 10): PRECIO DE COSTE
+            for row in sheet.iter_rows(min_row=2, values_only=True):
+                code = row[1]  # CÓDIGO DE PRODUCTO
+                cost = row[9]  # PRECIO DE COSTE
+
+                if not code:
+                    continue
+
+                # Asegurarse de que el coste sea un número
+                try:
+                    cost = float(cost) if cost is not None else 0.0
+                except ValueError:
+                    cost = 0.0
+
+                # Buscar el producto por referencia interna (default_code)
+                product = self.env["product.template"].search(
+                    [("default_code", "=", str(code).strip())], limit=1
+                )
+
+                if product:
+                    product.write({"standard_price": cost})
+                    updated_count += 1
+                else:
+                    not_found_codes.append(str(code))
+
+        except Exception as e:
+            raise UserError(_("Error al procesar el archivo Excel: %s") % str(e))
+
+        # Mostrar resultado
+        message = (
+            _("Actualización completada:\n" "- Productos actualizados: %s")
+            % updated_count
+        )
+        if not_found_codes:
+            message += _("\n- Códigos no encontrados: %s") % ", ".join(
+                not_found_codes[:10]
+            )
+            if len(not_found_codes) > 10:
+                message += " ..."
+
+        return {
+            "type": "ir.actions.client",
+            "tag": "display_notification",
+            "params": {
+                "title": _("Costes Actualizados"),
+                "message": message,
+                "type": "success" if updated_count > 0 else "warning",
+                "sticky": True,
+            },
+        }
+
+    def action_reset_to_zero(self):
+        """Pone a 0 el coste de todos los productos (funcionalidad original)."""
         try:
             # Buscar todos los productos que no tengan coste 0
             products = self.env["product.template"].search(
@@ -36,7 +109,7 @@ class ImportProductWizard(models.TransientModel):
             "type": "ir.actions.client",
             "tag": "display_notification",
             "params": {
-                "title": _("Costes Actualizados"),
+                "title": _("Costes a 0"),
                 "message": message,
                 "type": "success",
                 "sticky": True,
