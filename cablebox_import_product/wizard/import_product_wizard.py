@@ -36,15 +36,21 @@ class ImportProductWizard(models.TransientModel):
             for row in sheet.iter_rows(min_row=2, values_only=True):
                 code = row[1]  # CÓDIGO DE PRODUCTO
                 cost = row[9]  # PRECIO DE COSTE
+                sales_price = row[11]  # PRECIO AL PÚBLICO
 
                 if not code:
                     continue
 
-                # Asegurarse de que el coste sea un número
+                # Asegurarse de que el coste y precio de venta sean números
                 try:
                     cost = float(cost) if cost is not None else 0.0
                 except ValueError:
                     cost = 0.0
+
+                try:
+                    sales_price = float(sales_price) if sales_price is not None else 0.0
+                except ValueError:
+                    sales_price = 0.0
 
                 # Buscar el producto por referencia interna (default_code)
                 product = self.env["product.template"].search(
@@ -52,7 +58,7 @@ class ImportProductWizard(models.TransientModel):
                 )
 
                 if product:
-                    product.write({"standard_price": cost})
+                    product.write({"standard_price": cost, "list_price": sales_price})
                     updated_count += 1
                 else:
                     not_found_codes.append(str(code))
