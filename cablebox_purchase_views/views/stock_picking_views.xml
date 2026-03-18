@@ -6,10 +6,7 @@
         <field name="model">stock.picking</field>
         <field name="inherit_id" ref="stock.vpicktree" />
         <field name="arch" type="xml">
-            <!-- Añadir la columna al final de la lista, con edición inline habilitada -->
-            <xpath expr="//list" position="attributes">
-                <attribute name="editable">top</attribute>
-            </xpath>
+
             <xpath expr="//list/field[last()]" position="after">
                 <field name="sale_origin" string="Pedido de Cliente" optional="show" />
                 <field name="purchase_origin" string="Pedido de Compra" optional="show" />
