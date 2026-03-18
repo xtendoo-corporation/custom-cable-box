@@ -58,7 +58,37 @@ class ImportProductWizard(models.TransientModel):
                 )
 
                 if product:
-                    product.write({"standard_price": cost, "list_price": sales_price})
+                    # Update sales price on the template
+                    product.write({"list_price": sales_price})
+
+                    # Update standard price on the variants + revalue existing stock
+                    for variant in product.product_variant_ids:
+                        old_price = variant.standard_price
+                        qty_in_stock = variant.qty_available
+
+                        # If the variant has on-hand stock that was entered at cost 0
+                        # (quantity_svl == 0 but qty_available > 0), we need to create
+                        # an SVL manually before calling _change_standard_price,
+                        # otherwise Odoo skips the revaluation.
+                        if qty_in_stock > 0 and variant.quantity_svl == 0:
+                            svl_vals = {
+                                "company_id": self.env.company.id,
+                                "product_id": variant.id,
+                                "description": _(
+                                    "Valoración inicial del stock existente (coste actualizado a %s)"
+                                )
+                                % cost,
+                                "value": cost * qty_in_stock,
+                                "unit_cost": cost,
+                                "quantity": qty_in_stock,
+                            }
+                            self.env["stock.valuation.layer"].sudo().create(svl_vals)
+
+                        # Now write the price (triggers _change_standard_price on write)
+                        variant.with_company(self.env.company).write(
+                            {"standard_price": cost}
+                        )
+
                     updated_count += 1
                 else:
                     not_found_codes.append(str(code))
