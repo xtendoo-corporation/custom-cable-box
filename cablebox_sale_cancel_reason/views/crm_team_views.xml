@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="crm_team_view_kanban_dashboard_inherit_cancel_reason" model="ir.ui.view">
+        <field name="name">crm.team.view.kanban.dashboard.inherit.cancel.reason</field>
+        <field name="model">crm.team</field>
+        <field name="inherit_id" ref="sale.crm_team_view_kanban_dashboard"/>
+        <field name="arch" type="xml">
+            <!-- Add fields before templates so they are available in the kanban -->
+            <xpath expr="//field[@name='invoiced_target']" position="after">
+                <field name="total_offers_count"/>
+                <field name="won_offers_count"/>
+                <field name="lost_offers_count"/>
+                <field name="conversion_ratio"/>
+            </xpath>
+
+            <!-- Add the counters section after the existing quotation/invoice counters -->
+            <xpath expr="//div[@name='orders_to_invoice']" position="after">
+                <div class="row mt-1 o_sale_cancel_reason_counters">
+                    <div class="col-12 mt-2 mb-1">
+                        <strong>Indicadores de Ofertas</strong>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <span class="me-1"><t t-esc="record.total_offers_count.raw_value"/></span>
+                        <span>Ofertas Totales</span>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <span class="me-1 text-success"><t t-esc="record.won_offers_count.raw_value"/></span>
+                        <span>Ofertas Ganadas</span>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <span class="me-1 text-danger"><t t-esc="record.lost_offers_count.raw_value"/></span>
+                        <span>Ofertas Perdidas</span>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <span class="me-1 fw-bold"><t t-esc="record.conversion_ratio.raw_value.toFixed(1)"/>%</span>
+                        <span>Ratio de Conversión</span>
+                    </div>
+                </div>
+            </xpath>
+        </field>
+    </record>
+</odoo>

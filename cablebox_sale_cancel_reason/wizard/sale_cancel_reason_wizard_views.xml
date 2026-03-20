@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="sale_cancel_reason_wizard_view_form" model="ir.ui.view">
+        <field name="name">sale.cancel.reason.wizard.form</field>
+        <field name="model">sale.cancel.reason.wizard</field>
+        <field name="arch" type="xml">
+            <form>
+                <group>
+                    <field name="order_ids" invisible="1"/>
+                    <div class="alert alert-warning" role="alert">
+                        <span>¿Está seguro de que desea cancelar este presupuesto?</span>
+                        <br/>
+                        <span>Por favor, seleccione el motivo de la cancelación.</span>
+                    </div>
+                    <field name="cancel_reason" required="1" widget="selection"/>
+                </group>
+                <footer>
+                    <button string="Confirmar Cancelación"
+                            name="action_confirm_cancel"
+                            type="object"
+                            class="btn-primary"/>
+                    <button string="Descartar"
+                            class="btn-secondary"
+                            special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+</odoo>
