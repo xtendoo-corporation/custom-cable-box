@@ -32,7 +32,7 @@ class StockPicking(models.Model):
         string="Documento origen Compra",
         related="purchase_id.origin",
         store=False,
-        readonly=True,
+        readonly=False,
     )
 
     @api.depends("picking_type_code", "sale_id", "purchase_id")

@@ -19,4 +19,19 @@
             </xpath>
         </field>
     </record>
+
+    <!-- Heredar la vista de formulario para ocultar origin en recepciones y mostrar documento de origen compra -->
+    <record id="view_picking_form_custom_purchase" model="ir.ui.view">
+        <field name="name">stock.picking.form.custom.purchase</field>
+        <field name="model">stock.picking</field>
+        <field name="inherit_id" ref="stock.view_picking_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='origin']" position="attributes">
+                <attribute name="invisible">picking_type_code == 'incoming'</attribute>
+            </xpath>
+            <xpath expr="//field[@name='origin']" position="after">
+                <field name="purchase_document_origin" invisible="picking_type_code != 'incoming'" readonly="0"/>
+            </xpath>
+        </field>
+    </record>
 </odoo>
