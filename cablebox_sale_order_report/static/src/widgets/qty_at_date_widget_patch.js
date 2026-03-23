@@ -12,6 +12,15 @@ patch(QtyAtDateWidget.prototype, {
             this.calcData.is_forecasted_only =
                 this.calcData.will_be_fulfilled &&
                 data.free_qty_today < data.qty_to_deliver;
+                
+            console.log("QtyAtDateWidget Patch Running!", {
+                product: data.product_id,
+                qty_to_deliver: data.qty_to_deliver,
+                free_qty_today: data.free_qty_today,
+                virtual_available_at_date: data.virtual_available_at_date,
+                will_be_fulfilled: this.calcData.will_be_fulfilled,
+                is_forecasted_only: this.calcData.is_forecasted_only,
+            });
         }
     }
 });
