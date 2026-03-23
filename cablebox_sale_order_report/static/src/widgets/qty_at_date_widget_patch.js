@@ -11,7 +11,6 @@ patch(QtyAtDateWidget.prototype, {
             // Evaluamos si no hay suficiente a mano hoy, pero sí habrá en la fecha esperada
             this.calcData.is_forecasted_only =
                 this.calcData.will_be_fulfilled &&
-                !this.calcData.will_be_late &&
                 data.free_qty_today < data.qty_to_deliver;
         }
     }
