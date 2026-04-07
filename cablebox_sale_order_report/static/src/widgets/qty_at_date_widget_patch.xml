@@ -2,7 +2,7 @@
 <templates xml:space="preserve">
     <t t-inherit="sale_stock.QtyAtDate" t-inherit-mode="extension">
         <xpath expr="//a" position="attributes">
-            <attribute name="t-attf-class">fa fa-area-chart cursor-pointer {{ calcData.forecasted_issue ? 'text-danger' : (calcData.is_forecasted_only ? 'text-warning' : '') }}</attribute>
+            <attribute name="t-attf-class">fa fa-area-chart cursor-pointer {{ calcData.is_forecasted_only ? 'text-warning' : (calcData.forecasted_issue ? 'text-danger' : '') }}</attribute>
         </xpath>
     </t>
 </templates>

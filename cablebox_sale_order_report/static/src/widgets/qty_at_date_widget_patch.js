@@ -11,10 +11,19 @@ patch(QtyAtDateWidget.prototype, {
             // Evaluamos si no hay suficiente físicamente hoy, pero sí habrá en la fecha esperada.
             // Odoo recicla variables dependiendo de si el pedido está confirmado o en borrador.
             const qty_physical = data.state === 'sale' ? data.qty_available_today : data.free_qty_today;
-            
+
             this.calcData.is_forecasted_only =
                 this.calcData.will_be_fulfilled &&
                 qty_physical < data.qty_to_deliver;
+
+            // Compatibilidad con otros módulos que usan `reservation_issue` para pintar ámbar.
+            this.calcData.reservation_issue = this.calcData.is_forecasted_only;
+
+            // Para este cliente priorizamos mostrar ámbar cuando el forecast cubre la demanda
+            // pendiente, aunque la cobertura llegue más tarde que la fecha prevista.
+            if (this.calcData.is_forecasted_only) {
+                this.calcData.forecasted_issue = false;
+            }
         }
     }
 });
