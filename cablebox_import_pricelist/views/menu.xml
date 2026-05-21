@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <menuitem
+        id="menu_cablebox_import_pricelist"
+        name="Importar tarifas"
+        parent="sale.menu_sale_config"
+        action="action_cablebox_import_pricelist_wizard"
+        sequence="110"
+    />
+</odoo>
+
