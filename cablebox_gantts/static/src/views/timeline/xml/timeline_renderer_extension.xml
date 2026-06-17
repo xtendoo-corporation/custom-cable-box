@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates xml:space="preserve">
+    <t t-inherit="web_timeline.TimelineRenderer" t-inherit-mode="extension">
+        <xpath expr="//div[hasclass('btn-group')]/button[1]" position="attributes">
+            <attribute name="t-if">options.scales &amp;&amp; options.scales.includes('day')</attribute>
+        </xpath>
+        <xpath expr="//div[hasclass('btn-group')]/button[2]" position="attributes">
+            <attribute name="t-if">options.scales &amp;&amp; options.scales.includes('week')</attribute>
+        </xpath>
+        <xpath expr="//div[hasclass('btn-group')]/button[3]" position="attributes">
+            <attribute name="t-if">options.scales &amp;&amp; options.scales.includes('month')</attribute>
+        </xpath>
+        <xpath expr="//div[hasclass('btn-group')]/button[4]" position="attributes">
+            <attribute name="t-if">options.scales &amp;&amp; options.scales.includes('year')</attribute>
+        </xpath>
+    </t>
+</templates>
+
