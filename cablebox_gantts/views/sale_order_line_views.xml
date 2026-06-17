@@ -12,7 +12,7 @@
                       scrollToToday="true"
                       mode="month"
                       scales="month"
-                      colors="#ec7063:delivery_status_percentage &lt; 100; #2ecb71:delivery_status_percentage == 100;">
+                      colors="#005FAA:delivery_status_percentage &lt; 100; #005FAA:delivery_status_percentage == 100;">
                 <field name="order_id"/>
                 <field name="display_group"/>
                 <field name="product_id"/>
@@ -20,7 +20,7 @@
                 <field name="delivery_status_percentage"/>
                 <templates>
                     <t t-name="timeline-item">
-                        <div class="o_project_timeline_item">
+                        <div class="o_project_timeline_item" style="color: white !important;">
                             <span name="display_name">
                                 <t t-esc="record.order_id[1]"/> - <t t-esc="record.product_id[1]"/>
                             </span>

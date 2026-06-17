@@ -1,5 +1,5 @@
 import {patch} from "@web/core/utils/patch";
-import {TimelineModel} from "@web_timeline/views/timeline/timeline_model";
+import {TimelineModel} from "@web_timeline/views/timeline/timeline_model.esm";
 
 patch(TimelineModel.prototype, {
     _event_data_transform(record) {

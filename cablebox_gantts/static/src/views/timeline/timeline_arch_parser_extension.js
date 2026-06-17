@@ -7,13 +7,13 @@ patch(TimelineArchParser.prototype, {
         const timelineNode = arch.tagName === "timeline" ? arch : arch.querySelector("timeline");
 
         if (timelineNode && timelineNode.hasAttribute("scales")) {
-            archInfo.options.scales = timelineNode
+            archInfo.scales = timelineNode
                 .getAttribute("scales")
                 .split(",")
                 .map((s) => s.trim());
-        } else if (!archInfo.options.scales) {
+        } else if (!archInfo.scales) {
             // Default scales if not specified and not already set by parent
-            archInfo.options.scales = ["day", "week", "month", "year"];
+            archInfo.scales = ["day", "week", "month", "year"];
         }
         return archInfo;
     },

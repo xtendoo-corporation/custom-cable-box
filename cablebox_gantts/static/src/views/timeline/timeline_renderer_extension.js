@@ -3,6 +3,10 @@ import {TimelineRenderer} from "@web_timeline/views/timeline/timeline_renderer.e
 import {_t} from "@web/core/l10n/translation";
 
 patch(TimelineRenderer.prototype, {
+    setup() {
+        super.setup(...arguments);
+        this.scales = this.params.scales || ["day", "week", "month", "year"];
+    },
     async split_groups(records) {
         if (this.model.last_group_bys.length === 0) {
             return records;
