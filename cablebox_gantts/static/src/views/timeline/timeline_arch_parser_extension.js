@@ -15,7 +15,20 @@ patch(TimelineArchParser.prototype, {
             // Default scales if not specified and not already set by parent
             archInfo.scales = ["day", "week", "month", "year"];
         }
+        if (timelineNode && timelineNode.hasAttribute("unique_by")) {
+            archInfo.unique_by = timelineNode.getAttribute("unique_by");
+            if (!archInfo.fieldNames.includes(archInfo.unique_by)) {
+                archInfo.fieldNames.push(archInfo.unique_by);
+            }
+        }
+        for (const attrName of ["group_label_date", "group_order_date"]) {
+            if (timelineNode && timelineNode.hasAttribute(attrName)) {
+                archInfo[attrName] = timelineNode.getAttribute(attrName);
+                if (!archInfo.fieldNames.includes(archInfo[attrName])) {
+                    archInfo.fieldNames.push(archInfo[attrName]);
+                }
+            }
+        }
         return archInfo;
     },
 });
-

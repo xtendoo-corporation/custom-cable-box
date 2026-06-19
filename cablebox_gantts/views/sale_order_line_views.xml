@@ -8,6 +8,9 @@
             <timeline date_start="date_order"
                       date_stop="commitment_date_line"
                       default_group_by="order_id"
+                      unique_by="order_id"
+                      group_label_date="date_order"
+                      group_order_date="date_order"
                       event_open_popup="true"
                       scrollToToday="true"
                       mode="month"
@@ -22,7 +25,7 @@
                     <t t-name="timeline-item">
                         <div class="o_project_timeline_item" style="color: white !important;">
                             <span name="display_name">
-                                <t t-esc="record.order_id[1]"/> - <t t-esc="record.product_id[1]"/>
+                                <t t-esc="record.order_id[1]"/>
                             </span>
                         </div>
                     </t>

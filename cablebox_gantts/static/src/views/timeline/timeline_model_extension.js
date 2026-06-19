@@ -2,6 +2,37 @@ import {patch} from "@web/core/utils/patch";
 import {TimelineModel} from "@web_timeline/views/timeline/timeline_model.esm";
 
 patch(TimelineModel.prototype, {
+    setup(params) {
+        super.setup(...arguments);
+        this.unique_by = params.unique_by;
+        this.group_order_date = params.group_order_date;
+    },
+    async load(searchParams) {
+        await super.load(...arguments);
+        if (this.group_order_date) {
+            this.data.sort((left, right) => {
+                const leftDate = left[this.group_order_date] || "";
+                const rightDate = right[this.group_order_date] || "";
+                return leftDate.localeCompare(rightDate) || left.id - right.id;
+            });
+        }
+        if (!this.unique_by) {
+            return;
+        }
+        const seen = new Set();
+        this.data = this.data.filter((record) => {
+            let value = record[this.unique_by];
+            if (Array.isArray(value)) {
+                value = value[0];
+            }
+            if (!value || seen.has(value)) {
+                return false;
+            }
+            seen.add(value);
+            return true;
+        });
+        this.notify();
+    },
     _event_data_transform(record) {
         const [date_start, date_stop] = this._get_event_dates(record);
         let group = record[this.last_group_bys[0]];
@@ -21,4 +52,3 @@ patch(TimelineModel.prototype, {
         return res;
     },
 });
-
