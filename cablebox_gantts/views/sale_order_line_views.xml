@@ -44,9 +44,31 @@
                 <field name="qty_delivered" string="Entregado"/>
                 <field name="delivery_status_percentage" string="%" widget="progressbar"/>
                 <field name="date_order" string="Fecha Pedido"/>
-                <field name="commitment_date_line" string="Fecha Entrega"/>
+                <field name="recepcion_entrega"/>
                 <field name="state" column_invisible="True"/>
             </list>
+        </field>
+    </record>
+
+    <record id="view_order_form_cablebox_delivery_reception" model="ir.ui.view">
+        <field name="name">sale.order.form.cablebox.delivery.reception</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='order_line']/list/field[@name='price_unit']" position="after">
+                <field name="recepcion_entrega" optional="show" column_invisible="parent.state != 'sale'"/>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="sale_report_view_tree_cablebox_delivery_reception" model="ir.ui.view">
+        <field name="name">sale.report.list.cablebox.delivery.reception</field>
+        <field name="model">sale.report</field>
+        <field name="inherit_id" ref="sale.sale_report_view_tree"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='price_unit']" position="after">
+                <field name="recepcion_entrega" optional="show"/>
+            </xpath>
         </field>
     </record>
 

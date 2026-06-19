@@ -20,6 +20,17 @@ class SaleOrderLine(models.Model):
         compute='_compute_cablebox_dates',
         store=True
     )
+    recepcion_entrega = fields.Date(
+        string='Recepción de entrega',
+        store=True,
+        readonly=False
+    )
+    delivery_reception_date = fields.Date(
+        string='Recepción de entrega',
+        related='recepcion_entrega',
+        store=True,
+        readonly=True
+    )
     display_group = fields.Char(
         string='Grupo Visual',
         compute='_compute_display_group',
@@ -70,6 +81,8 @@ class SaleOrderLine(models.Model):
             end_date = line.order_id.commitment_date or picking_date or order_date
             line.commitment_date_line = end_date.date()
             line.expected_date_report = end_date.date()
+            if not line.recepcion_entrega:
+                line.recepcion_entrega = end_date.date()
 
     @api.depends('product_uom_qty', 'qty_delivered')
     def _compute_delivery_status_percentage(self):
