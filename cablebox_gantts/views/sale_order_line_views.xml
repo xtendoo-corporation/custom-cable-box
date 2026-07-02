@@ -100,14 +100,22 @@
         <field name="model">sale.order.line</field>
         <field name="inherit_id" ref="sale.view_sales_order_line_filter"/>
         <field name="arch" type="xml">
+            <xpath expr="//field[@name='order_id']" position="after">
+                <field name="salesman_id" string="Comercial" widget="many2one"/>
+                <field name="x_ref_sap" string="Ref. SAP"/>
+            </xpath>
             <xpath expr="//filter[@name='to_invoice']" position="after">
                 <separator/>
                 <filter string="Pendientes" name="pending" domain="[('delivery_status_percentage', '&lt;', 100)]"/>
                 <filter string="Entregados" name="delivered" domain="[('delivery_status_percentage', '=', 100)]"/>
+                <separator/>
+                <filter string="Fecha Pedido" name="date_order_filter" date="date_order"/>
+            </xpath>
+            <xpath expr="//filter[@name='my_sales_order_lines']" position="attributes">
+                <attribute name="invisible">1</attribute>
             </xpath>
             <xpath expr="//group" position="inside">
-                <filter string="Grupo Visual (Fecha - SAP - Tags)" name="group_display_group" context="{'group_by': 'display_group'}"/>
-                <filter string="Pedido de Compra SAP" name="group_client_order_ref" context="{'group_by': 'client_order_ref_line'}"/>
+                <filter string="Año Pedido" name="group_year" context="{'group_by': 'date_order:year'}"/>
             </xpath>
         </field>
     </record>
