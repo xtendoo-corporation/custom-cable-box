@@ -7,7 +7,7 @@
         <field name="arch" type="xml">
             <timeline date_start="date_order"
                       date_stop="commitment_date_line"
-                      default_group_by="order_id"
+                      default_group_by="display_group"
                       unique_by="order_id"
                       group_label_date="date_order"
                       group_order_date="date_order"
@@ -21,11 +21,14 @@
                 <field name="product_id"/>
                 <field name="client_order_ref_line"/>
                 <field name="delivery_status_percentage"/>
+                <field name="x_ref_sap"/>
+                <field name="tag_ids"/>
+                <field name="tags_string"/>
                 <templates>
                     <t t-name="timeline-item">
                         <div class="o_project_timeline_item" style="color: white !important;">
                             <span name="display_name">
-                                <t t-esc="record.order_id[1]"/>
+                                <t t-if="record.order_id" t-esc="record.order_id[1]"/>
                             </span>
                         </div>
                     </t>
@@ -103,6 +106,7 @@
                 <filter string="Entregados" name="delivered" domain="[('delivery_status_percentage', '=', 100)]"/>
             </xpath>
             <xpath expr="//group" position="inside">
+                <filter string="Grupo Visual (Fecha - SAP - Tags)" name="group_display_group" context="{'group_by': 'display_group'}"/>
                 <filter string="Pedido de Compra SAP" name="group_client_order_ref" context="{'group_by': 'client_order_ref_line'}"/>
             </xpath>
         </field>

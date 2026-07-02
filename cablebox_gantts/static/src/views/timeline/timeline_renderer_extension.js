@@ -15,11 +15,37 @@ patch(TimelineRenderer.prototype, {
         }
         const grouped_field = this.model.last_group_bys[0];
         const field_type = this.fields[grouped_field]?.type;
+
         const makeGroupContent = (evt, fallback) => {
-            if (!this.group_label_date || !evt[this.group_label_date]) {
-                return fallback;
+            let label = fallback;
+
+            // Si estamos agrupando por display_group, construimos la etiqueta dinámicamente
+            // para evitar problemas de caché con el campo almacenado.
+            if (grouped_field === 'display_group') {
+                const parts = [];
+                const ref_sap = evt.x_ref_sap;
+                const client_ref = evt.client_order_ref_line;
+                const tags = evt.tags_string;
+
+                if (ref_sap) {
+                    parts.push(`REF: ${ref_sap}`);
+                } else if (client_ref) {
+                    parts.push(`SAP: ${client_ref}`);
+                }
+
+                if (tags) {
+                    parts.push(tags);
+                }
+
+                if (parts.length > 0) {
+                    label = parts.join(" - ");
+                }
             }
-            return `${evt[this.group_label_date]} - ${fallback}`;
+
+            if (!this.group_label_date || !evt[this.group_label_date]) {
+                return label;
+            }
+            return `${evt[this.group_label_date]} - ${label}`;
         };
         const makeGroupOrder = (evt, fallback) => {
             if (!this.group_order_date || !evt[this.group_order_date]) {

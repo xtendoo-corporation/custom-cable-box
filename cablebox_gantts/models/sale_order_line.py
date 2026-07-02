@@ -34,7 +34,8 @@ class SaleOrderLine(models.Model):
     display_group = fields.Char(
         string='Grupo Visual',
         compute='_compute_display_group',
-        store=True
+        store=True,
+        readonly=True
     )
     client_order_ref_line = fields.Char(
         related='order_id.client_order_ref',
@@ -52,14 +53,56 @@ class SaleOrderLine(models.Model):
         string='Cantidad por Entregar',
         store=True
     )
+    x_ref_sap = fields.Char(
+        related='order_id.x_ref_sap',
+        string='Ref. SAP',
+        store=True,
+        readonly=True
+    )
+    tag_ids = fields.Many2many(
+        comodel_name='crm.tag',
+        related='order_id.tag_ids',
+        string='Etiquetas',
+        readonly=True
+    )
+    tags_string = fields.Char(
+        string='Etiquetas (Texto)',
+        compute='_compute_tags_string',
+        store=True
+    )
 
-    @api.depends('order_id.client_order_ref', 'order_id.name')
+    @api.depends('order_id.tag_ids', 'order_id.tag_ids.name')
+    def _compute_tags_string(self):
+        for line in self:
+            tags = line.order_id.tag_ids.mapped('name')
+            line.tags_string = f"[{', '.join(tags)}]" if tags else ""
+
+    @api.depends('order_id.name', 'order_id.x_ref_sap', 'order_id.client_order_ref', 'order_id.tag_ids', 'order_id.tag_ids.name')
     def _compute_display_group(self):
         for line in self:
-            if line.order_id.client_order_ref:
-                line.display_group = f"[{line.order_id.client_order_ref}] {line.order_id.name}"
-            else:
-                line.display_group = line.order_id.name
+            order = line.order_id
+            if not order:
+                line.display_group = ""
+                continue
+
+            # Para agrupar por pedido pero mostrar solo SAP y Tags,
+            # mantenemos el nombre del pedido al principio para asegurar unicidad
+            # pero el renderer JS se encargará de ocultarlo en la etiqueta visual.
+            parts = [order.name]
+
+            if order.x_ref_sap:
+                parts.append(f"REF: {order.x_ref_sap}")
+            elif order.client_order_ref:
+                parts.append(f"SAP: {order.client_order_ref}")
+
+            # Añadir etiquetas
+            tags = order.tag_ids.mapped('name')
+            if tags:
+                parts.append(f"[{', '.join(tags)}]")
+
+            # Resultado final
+            res = " - ".join(parts) if parts else "Sin Referencia"
+            line.display_group = res
 
     @api.depends('order_id.date_order', 'order_id.commitment_date', 'order_id.picking_ids.scheduled_date')
     def _compute_cablebox_dates(self):

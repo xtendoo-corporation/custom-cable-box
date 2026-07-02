@@ -8,13 +8,14 @@
         Muestra la relación entre el pedido SAP, el pedido de Odoo y los productos.
     """,
     'author': 'Xtendoo',
-    'depends': ['sale', 'web_timeline', 'sale_stock'],
+    'depends': ['sale', 'web_timeline', 'sale_stock', 'cablebox_sale_order_report'],
     'data': [
         'views/sale_order_line_views.xml',
     ],
     'assets': {
         'web.assets_backend': [
             'cablebox_gantts/static/src/views/timeline/timeline_arch_parser_extension.js',
+            'cablebox_gantts/static/src/views/timeline/timeline_controller_extension.js',
             'cablebox_gantts/static/src/views/timeline/timeline_model_extension.js',
             'cablebox_gantts/static/src/views/timeline/timeline_renderer_extension.js',
             'cablebox_gantts/static/src/views/timeline/xml/timeline_renderer_extension.xml',
