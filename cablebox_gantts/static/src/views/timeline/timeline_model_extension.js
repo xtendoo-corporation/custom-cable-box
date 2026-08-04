@@ -9,6 +9,16 @@ patch(TimelineModel.prototype, {
     },
     async load(searchParams) {
         await super.load(...arguments);
+        // Remove fully delivered orders so they disappear from the timeline.
+        // We check `delivery_status_percentage` field; if it's 100 (or string '100'),
+        // exclude the record.
+        if (Array.isArray(this.data) && this.data.length) {
+            this.data = this.data.filter((record) => {
+                const perc = record.delivery_status_percentage;
+                // handle possibilities: number, string, undefined
+                return !(perc !== undefined && (Number(perc) === 100));
+            });
+        }
         if (this.group_order_date) {
             this.data.sort((left, right) => {
                 const leftDate = left[this.group_order_date] || "";
