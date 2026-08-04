@@ -1,12 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <templates xml:space="preserve">
     <t t-inherit="web_timeline.TimelineView" t-inherit-mode="extension">
-        <xpath expr="//Layout" position="attributes">
-            <attribute name="resModel">props.resModel</attribute>
-        </xpath>
-        <xpath expr="//SearchBar" position="attributes">
-            <attribute name="resModel">props.resModel</attribute>
-        </xpath>
+        <!-- Removed invalid props injection: Layout/SearchBar do not accept a `resModel` prop
+             Passing `resModel` here caused Owl validation errors (unknown key 'resModel').
+             If later needed, pass model information via the controller/renderer JS code instead. -->
     </t>
 
     <t t-inherit="web_timeline.TimelineRenderer" t-inherit-mode="extension">
