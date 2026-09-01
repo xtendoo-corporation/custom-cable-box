@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+  <data>
+
+    <!-- Server action to appear in the "Acción" (More) menu on sale.order -->
+    <record id="server_action_import_confirmation" model="ir.actions.server">
+      <field name="name">Importar confirmación del pedido</field>
+      <field name="model_id" ref="sale.model_sale_order"/>
+      <field name="state">code</field>
+      <field name="code">action = records.action_open_import_confirmation_wizard()</field>
+      <!-- bind to model so it appears in the actions menu -->
+      <field name="binding_model_id" ref="sale.model_sale_order"/>
+      <field name="binding_type">action</field>
+    </record>
+
+    <!-- Wizard form -->
+    <record id="view_cablebox_order_confirmation_wizard" model="ir.ui.view">
+      <field name="name">cablebox.order.confirmation.wizard.form</field>
+      <field name="model">cablebox.order.confirmation.wizard</field>
+      <field name="arch" type="xml">
+        <form string="Importar confirmación del pedido">
+          <sheet>
+            <group>
+              <field name="order_id" readonly="1"/>
+              <field name="pdf_file"/>
+            </group>
+            <footer>
+              <button string="Importar" type="object" name="action_import_confirmation" class="btn-primary"/>
+              <button string="Cancelar" class="btn-secondary" special="cancel"/>
+            </footer>
+          </sheet>
+        </form>
+      </field>
+    </record>
+
+    <!-- Add pedido_number column to sale order tree views -->
+    <record id="view_quotation_tree_add_pedido_number" model="ir.ui.view">
+      <field name="name">sale.order.quotation.tree.pedido_number</field>
+      <field name="model">sale.order</field>
+      <field name="inherit_id" ref="sale.view_quotation_tree"/>
+      <field name="arch" type="xml">
+        <xpath expr="//field[@name='name']" position="after">
+          <field name="pedido_number" readonly="1" optional="hide"/>
+        </xpath>
+      </field>
+    </record>
+
+    <record id="view_order_tree_add_pedido_number" model="ir.ui.view">
+      <field name="name">sale.order.tree.pedido_number</field>
+      <field name="model">sale.order</field>
+      <field name="inherit_id" ref="sale.view_order_tree"/>
+      <field name="arch" type="xml">
+        <xpath expr="//field[@name='name']" position="after">
+          <field name="pedido_number" readonly="1" optional="hide"/>
+        </xpath>
+      </field>
+    </record>
+
+  </data>
+</odoo>
+
+
+
