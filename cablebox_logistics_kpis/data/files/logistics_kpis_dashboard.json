@@ -1,0 +1,622 @@
+{
+  "version": 21,
+  "sheets": [
+    {
+      "id": "sheet1",
+      "name": "Dashboard",
+      "colNumber": 6,
+      "rowNumber": 39,
+      "rows": {},
+      "cols": {
+        "0": {
+          "size": 260
+        },
+        "1": {
+          "size": 160
+        }
+      },
+      "merges": [],
+      "cells": {
+        "A1": {
+          "content": "=_t(\"Dashboard Logística - Entregas\")"
+        },
+        "A12": {
+          "content": "=_t(\"Top 10 clientes con más retrasos de entrega\")"
+        },
+        "A13": {
+          "content": "=_t(\"Cliente\")"
+        },
+        "B13": {
+          "content": "=_t(\"Nº pedidos retrasados\")"
+        },
+        "A14": {
+          "content": "=PIVOT.HEADER(4,\"#partner_id\",1)"
+        },
+        "B14": {
+          "content": "=PIVOT.VALUE(4,\"__count\",\"#partner_id\",1)"
+        },
+        "A15": {
+          "content": "=PIVOT.HEADER(4,\"#partner_id\",2)"
+        },
+        "B15": {
+          "content": "=PIVOT.VALUE(4,\"__count\",\"#partner_id\",2)"
+        },
+        "A16": {
+          "content": "=PIVOT.HEADER(4,\"#partner_id\",3)"
+        },
+        "B16": {
+          "content": "=PIVOT.VALUE(4,\"__count\",\"#partner_id\",3)"
+        },
+        "A17": {
+          "content": "=PIVOT.HEADER(4,\"#partner_id\",4)"
+        },
+        "B17": {
+          "content": "=PIVOT.VALUE(4,\"__count\",\"#partner_id\",4)"
+        },
+        "A18": {
+          "content": "=PIVOT.HEADER(4,\"#partner_id\",5)"
+        },
+        "B18": {
+          "content": "=PIVOT.VALUE(4,\"__count\",\"#partner_id\",5)"
+        },
+        "A19": {
+          "content": "=PIVOT.HEADER(4,\"#partner_id\",6)"
+        },
+        "B19": {
+          "content": "=PIVOT.VALUE(4,\"__count\",\"#partner_id\",6)"
+        },
+        "A20": {
+          "content": "=PIVOT.HEADER(4,\"#partner_id\",7)"
+        },
+        "B20": {
+          "content": "=PIVOT.VALUE(4,\"__count\",\"#partner_id\",7)"
+        },
+        "A21": {
+          "content": "=PIVOT.HEADER(4,\"#partner_id\",8)"
+        },
+        "B21": {
+          "content": "=PIVOT.VALUE(4,\"__count\",\"#partner_id\",8)"
+        },
+        "A22": {
+          "content": "=PIVOT.HEADER(4,\"#partner_id\",9)"
+        },
+        "B22": {
+          "content": "=PIVOT.VALUE(4,\"__count\",\"#partner_id\",9)"
+        },
+        "A23": {
+          "content": "=PIVOT.HEADER(4,\"#partner_id\",10)"
+        },
+        "B23": {
+          "content": "=PIVOT.VALUE(4,\"__count\",\"#partner_id\",10)"
+        },
+        "A26": {
+          "content": "=_t(\"Top 10 productos con más líneas retrasadas\")"
+        },
+        "A27": {
+          "content": "=_t(\"Producto\")"
+        },
+        "B27": {
+          "content": "=_t(\"Nº líneas retrasadas\")"
+        },
+        "A28": {
+          "content": "=PIVOT.HEADER(5,\"#product_id\",1)"
+        },
+        "B28": {
+          "content": "=PIVOT.VALUE(5,\"__count\",\"#product_id\",1)"
+        },
+        "A29": {
+          "content": "=PIVOT.HEADER(5,\"#product_id\",2)"
+        },
+        "B29": {
+          "content": "=PIVOT.VALUE(5,\"__count\",\"#product_id\",2)"
+        },
+        "A30": {
+          "content": "=PIVOT.HEADER(5,\"#product_id\",3)"
+        },
+        "B30": {
+          "content": "=PIVOT.VALUE(5,\"__count\",\"#product_id\",3)"
+        },
+        "A31": {
+          "content": "=PIVOT.HEADER(5,\"#product_id\",4)"
+        },
+        "B31": {
+          "content": "=PIVOT.VALUE(5,\"__count\",\"#product_id\",4)"
+        },
+        "A32": {
+          "content": "=PIVOT.HEADER(5,\"#product_id\",5)"
+        },
+        "B32": {
+          "content": "=PIVOT.VALUE(5,\"__count\",\"#product_id\",5)"
+        },
+        "A33": {
+          "content": "=PIVOT.HEADER(5,\"#product_id\",6)"
+        },
+        "B33": {
+          "content": "=PIVOT.VALUE(5,\"__count\",\"#product_id\",6)"
+        },
+        "A34": {
+          "content": "=PIVOT.HEADER(5,\"#product_id\",7)"
+        },
+        "B34": {
+          "content": "=PIVOT.VALUE(5,\"__count\",\"#product_id\",7)"
+        },
+        "A35": {
+          "content": "=PIVOT.HEADER(5,\"#product_id\",8)"
+        },
+        "B35": {
+          "content": "=PIVOT.VALUE(5,\"__count\",\"#product_id\",8)"
+        },
+        "A36": {
+          "content": "=PIVOT.HEADER(5,\"#product_id\",9)"
+        },
+        "B36": {
+          "content": "=PIVOT.VALUE(5,\"__count\",\"#product_id\",9)"
+        },
+        "A37": {
+          "content": "=PIVOT.HEADER(5,\"#product_id\",10)"
+        },
+        "B37": {
+          "content": "=PIVOT.VALUE(5,\"__count\",\"#product_id\",10)"
+        }
+      },
+      "styles": {
+        "A12": 1,
+        "A13:B13": 2,
+        "A26": 1,
+        "A27:B27": 2,
+        "A1": 3
+      },
+      "formats": {},
+      "borders": {},
+      "conditionalFormats": [],
+      "figures": [
+        {
+          "id": "97fa45f4-dd56-4628-8c7c-b1df766e1eef",
+          "x": 0,
+          "y": 30,
+          "width": 220,
+          "height": 100,
+          "tag": "chart",
+          "data": {
+            "type": "scorecard",
+            "title": {
+              "text": "Pedidos pendientes de entrega",
+              "bold": true,
+              "align": "left",
+              "color": "#434343"
+            },
+            "background": "#EFF6FF",
+            "baselineMode": "text",
+            "baselineColorUp": "#00A04A",
+            "baselineColorDown": "#DC6965",
+            "keyValue": "Data!B2",
+            "humanize": false
+          }
+        },
+        {
+          "id": "214e0e52-822b-47d4-be08-dcd2c3a95505",
+          "x": 230,
+          "y": 30,
+          "width": 220,
+          "height": 100,
+          "tag": "chart",
+          "data": {
+            "type": "scorecard",
+            "title": {
+              "text": "Pedidos retrasados",
+              "bold": true,
+              "align": "left",
+              "color": "#434343"
+            },
+            "background": "#FEF2F2",
+            "baselineMode": "text",
+            "baselineColorUp": "#00A04A",
+            "baselineColorDown": "#DC6965",
+            "keyValue": "Data!B3",
+            "humanize": false
+          }
+        },
+        {
+          "id": "8e9d988b-6c7c-4742-b55d-5dad24ee4f7a",
+          "x": 460,
+          "y": 30,
+          "width": 220,
+          "height": 100,
+          "tag": "chart",
+          "data": {
+            "type": "scorecard",
+            "title": {
+              "text": "% pedidos retrasados",
+              "bold": true,
+              "align": "left",
+              "color": "#434343"
+            },
+            "background": "#FEF2F2",
+            "baselineMode": "text",
+            "baselineColorUp": "#00A04A",
+            "baselineColorDown": "#DC6965",
+            "keyValue": "Data!B5",
+            "humanize": false
+          }
+        },
+        {
+          "id": "2410de06-0de7-4ec9-a503-eb0f135289bb",
+          "x": 0,
+          "y": 140,
+          "width": 220,
+          "height": 100,
+          "tag": "chart",
+          "data": {
+            "type": "scorecard",
+            "title": {
+              "text": "Días de retraso (media)",
+              "bold": true,
+              "align": "left",
+              "color": "#434343"
+            },
+            "background": "#FEF2F2",
+            "baselineMode": "text",
+            "baselineColorUp": "#00A04A",
+            "baselineColorDown": "#DC6965",
+            "keyValue": "Data!B6",
+            "humanize": false
+          }
+        },
+        {
+          "id": "8f2d5c47-8a64-4470-bb74-e4dea8388e50",
+          "x": 230,
+          "y": 140,
+          "width": 220,
+          "height": 100,
+          "tag": "chart",
+          "data": {
+            "type": "scorecard",
+            "title": {
+              "text": "Valor pedidos retrasados (€)",
+              "bold": true,
+              "align": "left",
+              "color": "#434343"
+            },
+            "background": "#FEF2F2",
+            "baselineMode": "text",
+            "baselineColorUp": "#00A04A",
+            "baselineColorDown": "#DC6965",
+            "keyValue": "Data!B7",
+            "humanize": false
+          }
+        },
+        {
+          "id": "dfa5854f-31c8-47db-b605-7fa4af61b7ce",
+          "x": 460,
+          "y": 140,
+          "width": 220,
+          "height": 100,
+          "tag": "chart",
+          "data": {
+            "type": "scorecard",
+            "title": {
+              "text": "Valor pedidos pendientes (€)",
+              "bold": true,
+              "align": "left",
+              "color": "#434343"
+            },
+            "background": "#EFF6FF",
+            "baselineMode": "text",
+            "baselineColorUp": "#00A04A",
+            "baselineColorDown": "#DC6965",
+            "keyValue": "Data!B8",
+            "humanize": false
+          }
+        }
+      ],
+      "tables": [],
+      "areGridLinesVisible": true,
+      "isVisible": true,
+      "headerGroups": {},
+      "dataValidationRules": [],
+      "comments": {}
+    },
+    {
+      "id": "sheet2",
+      "name": "Data",
+      "colNumber": 4,
+      "rowNumber": 8,
+      "rows": {},
+      "cols": {
+        "0": {
+          "size": 260
+        },
+        "1": {
+          "size": 120
+        }
+      },
+      "merges": [],
+      "cells": {
+        "A1": {
+          "content": "=_t(\"KPI\")"
+        },
+        "B1": {
+          "content": "=_t(\"Valor\")"
+        },
+        "A2": {
+          "content": "=_t(\"Pedidos pendientes de entrega\")"
+        },
+        "B2": {
+          "content": "=PIVOT.VALUE(2,\"__count\")"
+        },
+        "A3": {
+          "content": "=_t(\"Pedidos retrasados\")"
+        },
+        "B3": {
+          "content": "=PIVOT.VALUE(3,\"__count\")"
+        },
+        "A4": {
+          "content": "=_t(\"Total pedidos emitidos\")"
+        },
+        "B4": {
+          "content": "=PIVOT.VALUE(1,\"__count\")"
+        },
+        "A5": {
+          "content": "=_t(\"% pedidos retrasados\")"
+        },
+        "B5": {
+          "content": "=IFERROR(B3/B4,0)"
+        },
+        "A6": {
+          "content": "=_t(\"Días de retraso (media)\")"
+        },
+        "B6": {
+          "content": "=IFERROR(PIVOT.VALUE(3,\"delivery_delay_days\"),0)"
+        },
+        "A7": {
+          "content": "=_t(\"Valor pedidos retrasados\")"
+        },
+        "B7": {
+          "content": "=PIVOT.VALUE(3,\"pending_delivery_value\")"
+        },
+        "A8": {
+          "content": "=_t(\"Valor pedidos pendientes\")"
+        },
+        "B8": {
+          "content": "=PIVOT.VALUE(2,\"pending_delivery_value\")"
+        }
+      },
+      "styles": {},
+      "formats": {
+        "B5": 1,
+        "B7:B8": 2
+      },
+      "borders": {},
+      "conditionalFormats": [],
+      "figures": [],
+      "tables": [],
+      "areGridLinesVisible": true,
+      "isVisible": false,
+      "headerGroups": {},
+      "dataValidationRules": [],
+      "comments": {}
+    }
+  ],
+  "styles": {
+    "1": {
+      "bold": true,
+      "fontSize": 13
+    },
+    "2": {
+      "bold": true,
+      "fillColor": "#F3F4F6"
+    },
+    "3": {
+      "bold": true,
+      "fontSize": 16
+    }
+  },
+  "formats": {
+    "1": "0.00%",
+    "2": "#,##0.00\" €\""
+  },
+  "borders": {},
+  "revisionId": "START_REVISION",
+  "uniqueFigureIds": true,
+  "settings": {
+    "locale": {
+      "name": "English (US)",
+      "code": "en_US",
+      "thousandsSeparator": ",",
+      "decimalSeparator": ".",
+      "dateFormat": "mm/dd/yyyy",
+      "timeFormat": "hh:mm:ss",
+      "formulaArgSeparator": ",",
+      "weekStart": 7
+    }
+  },
+  "pivots": {
+    "14450dc1-0349-4043-86b4-e7aedbd0fd83": {
+      "type": "ODOO",
+      "domain": [
+        [
+          "state",
+          "not in",
+          [
+            "draft",
+            "sent",
+            "cancel"
+          ]
+        ]
+      ],
+      "context": {},
+      "sortedColumn": null,
+      "measures": [
+        {
+          "id": "__count",
+          "fieldName": "__count"
+        }
+      ],
+      "model": "sale.order",
+      "columns": [],
+      "rows": [],
+      "name": "Pedidos emitidos",
+      "formulaId": "1"
+    },
+    "2e331d16-cdef-483f-8f2a-c9916c9a9b0f": {
+      "type": "ODOO",
+      "domain": [
+        [
+          "state",
+          "not in",
+          [
+            "draft",
+            "sent",
+            "cancel"
+          ]
+        ],
+        [
+          "is_delivery_pending",
+          "=",
+          true
+        ]
+      ],
+      "context": {},
+      "sortedColumn": null,
+      "measures": [
+        {
+          "id": "__count",
+          "fieldName": "__count"
+        },
+        {
+          "id": "pending_delivery_value",
+          "fieldName": "pending_delivery_value",
+          "aggregator": "sum"
+        }
+      ],
+      "model": "sale.order",
+      "columns": [],
+      "rows": [],
+      "name": "Pedidos pendientes de entrega",
+      "formulaId": "2"
+    },
+    "86b1c748-096d-47d9-802f-fc94bd3de813": {
+      "type": "ODOO",
+      "domain": [
+        [
+          "state",
+          "not in",
+          [
+            "draft",
+            "sent",
+            "cancel"
+          ]
+        ],
+        [
+          "is_delivery_delayed",
+          "=",
+          true
+        ]
+      ],
+      "context": {},
+      "sortedColumn": null,
+      "measures": [
+        {
+          "id": "__count",
+          "fieldName": "__count"
+        },
+        {
+          "id": "pending_delivery_value",
+          "fieldName": "pending_delivery_value",
+          "aggregator": "sum"
+        },
+        {
+          "id": "delivery_delay_days",
+          "fieldName": "delivery_delay_days",
+          "aggregator": "avg"
+        }
+      ],
+      "model": "sale.order",
+      "columns": [],
+      "rows": [],
+      "name": "Pedidos retrasados",
+      "formulaId": "3"
+    },
+    "7f0f7c75-122e-40e2-8ace-f3a35484ecd9": {
+      "type": "ODOO",
+      "domain": [
+        [
+          "is_delivery_delayed",
+          "=",
+          true
+        ]
+      ],
+      "context": {},
+      "sortedColumn": {
+        "groupId": [
+          [],
+          []
+        ],
+        "measure": "__count",
+        "order": "desc",
+        "originIndexes": [
+          0
+        ]
+      },
+      "measures": [
+        {
+          "id": "__count",
+          "fieldName": "__count"
+        }
+      ],
+      "model": "sale.order",
+      "columns": [],
+      "rows": [
+        {
+          "fieldName": "partner_id"
+        }
+      ],
+      "name": "Top clientes con pedidos retrasados",
+      "formulaId": "4"
+    },
+    "12e47d5d-c01b-4d86-a53a-2770c7046722": {
+      "type": "ODOO",
+      "domain": [
+        [
+          "is_delivery_delayed",
+          "=",
+          true
+        ]
+      ],
+      "context": {},
+      "sortedColumn": {
+        "groupId": [
+          [],
+          []
+        ],
+        "measure": "__count",
+        "order": "desc",
+        "originIndexes": [
+          0
+        ]
+      },
+      "measures": [
+        {
+          "id": "__count",
+          "fieldName": "__count"
+        }
+      ],
+      "model": "sale.order.line",
+      "columns": [],
+      "rows": [
+        {
+          "fieldName": "product_id"
+        }
+      ],
+      "name": "Top productos con líneas retrasadas",
+      "formulaId": "5"
+    }
+  },
+  "pivotNextId": "6",
+  "customTableStyles": {},
+  "odooVersion": 12,
+  "globalFilters": [],
+  "lists": {},
+  "listNextId": "1",
+  "chartOdooMenusReferences": {}
+}
