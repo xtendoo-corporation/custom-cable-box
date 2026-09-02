@@ -195,17 +195,25 @@ class CableboxOrderConfirmationWizard(models.TransientModel):
                 if not dt:
                     continue
 
-                # build context by looking backwards up to 6 lines
+                # build context by looking forward up to 6 lines: in the PDF layout the
+                # product description follows the "DATE OF READINESS" line, not the other way around
                 context = ''
-                for back in range(1, 7):
-                    if idx - back < 0:
-                        break
-                    piece = lines[idx - back]
+                collected = 0
+                j = idx + 1
+                while j < len(lines) and collected < 6:
+                    piece = lines[j]
                     if not piece:
+                        if context:
+                            break
+                        j += 1
+                        continue
+                    if 'DATE OF READINESS' in piece.upper():
                         break
                     if piece.upper().startswith('QUANTITY') or piece.upper().startswith('U.M.'):
                         break
-                    context = (piece + ' ' + context).strip()
+                    context = (context + ' ' + piece).strip()
+                    collected += 1
+                    j += 1
                 norm_context = self._normalize_text(context)
                 _logger.debug('DATE OF READINESS found: %s ; context=%s', dt, context)
 
