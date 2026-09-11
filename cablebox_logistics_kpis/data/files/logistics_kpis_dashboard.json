@@ -5,14 +5,26 @@
       "id": "sheet1",
       "name": "Dashboard",
       "colNumber": 6,
-      "rowNumber": 39,
+      "rowNumber": 27,
       "rows": {},
       "cols": {
         "0": {
-          "size": 260
+          "size": 380
         },
         "1": {
-          "size": 160
+          "size": 170
+        },
+        "2": {
+          "size": 50
+        },
+        "3": {
+          "size": 380
+        },
+        "4": {
+          "size": 170
+        },
+        "5": {
+          "size": 20
         }
       },
       "merges": [],
@@ -20,167 +32,170 @@
         "A1": {
           "content": "=_t(\"Dashboard Logística - Entregas\")"
         },
-        "A12": {
+        "A13": {
           "content": "=_t(\"Top 10 clientes con más retrasos de entrega\")"
         },
-        "A13": {
-          "content": "=_t(\"Cliente\")"
-        },
-        "B13": {
-          "content": "=_t(\"Nº pedidos retrasados\")"
-        },
-        "A14": {
-          "content": "=PIVOT.HEADER(4,\"#partner_id\",1)"
-        },
-        "B14": {
-          "content": "=PIVOT.VALUE(4,\"__count\",\"#partner_id\",1)"
-        },
-        "A15": {
-          "content": "=PIVOT.HEADER(4,\"#partner_id\",2)"
-        },
-        "B15": {
-          "content": "=PIVOT.VALUE(4,\"__count\",\"#partner_id\",2)"
-        },
-        "A16": {
-          "content": "=PIVOT.HEADER(4,\"#partner_id\",3)"
-        },
-        "B16": {
-          "content": "=PIVOT.VALUE(4,\"__count\",\"#partner_id\",3)"
-        },
-        "A17": {
-          "content": "=PIVOT.HEADER(4,\"#partner_id\",4)"
-        },
-        "B17": {
-          "content": "=PIVOT.VALUE(4,\"__count\",\"#partner_id\",4)"
-        },
-        "A18": {
-          "content": "=PIVOT.HEADER(4,\"#partner_id\",5)"
-        },
-        "B18": {
-          "content": "=PIVOT.VALUE(4,\"__count\",\"#partner_id\",5)"
-        },
-        "A19": {
-          "content": "=PIVOT.HEADER(4,\"#partner_id\",6)"
-        },
-        "B19": {
-          "content": "=PIVOT.VALUE(4,\"__count\",\"#partner_id\",6)"
-        },
-        "A20": {
-          "content": "=PIVOT.HEADER(4,\"#partner_id\",7)"
-        },
-        "B20": {
-          "content": "=PIVOT.VALUE(4,\"__count\",\"#partner_id\",7)"
-        },
-        "A21": {
-          "content": "=PIVOT.HEADER(4,\"#partner_id\",8)"
-        },
-        "B21": {
-          "content": "=PIVOT.VALUE(4,\"__count\",\"#partner_id\",8)"
-        },
-        "A22": {
-          "content": "=PIVOT.HEADER(4,\"#partner_id\",9)"
-        },
-        "B22": {
-          "content": "=PIVOT.VALUE(4,\"__count\",\"#partner_id\",9)"
-        },
-        "A23": {
-          "content": "=PIVOT.HEADER(4,\"#partner_id\",10)"
-        },
-        "B23": {
-          "content": "=PIVOT.VALUE(4,\"__count\",\"#partner_id\",10)"
-        },
-        "A26": {
+        "D13": {
           "content": "=_t(\"Top 10 productos con más líneas retrasadas\")"
         },
-        "A27": {
+        "A14": {
+          "content": "=_t(\"Cliente\")"
+        },
+        "B14": {
+          "content": "=_t(\"Nº pedidos retrasados\")"
+        },
+        "D14": {
           "content": "=_t(\"Producto\")"
         },
-        "B27": {
+        "E14": {
           "content": "=_t(\"Nº líneas retrasadas\")"
         },
-        "A28": {
+        "A15": {
+          "content": "=PIVOT.HEADER(4,\"#partner_id\",1)"
+        },
+        "B15": {
+          "content": "=PIVOT.VALUE(4,\"__count\",\"#partner_id\",1)"
+        },
+        "D15": {
           "content": "=PIVOT.HEADER(5,\"#product_id\",1)"
         },
-        "B28": {
+        "E15": {
           "content": "=PIVOT.VALUE(5,\"__count\",\"#product_id\",1)"
         },
-        "A29": {
+        "A16": {
+          "content": "=PIVOT.HEADER(4,\"#partner_id\",2)"
+        },
+        "B16": {
+          "content": "=PIVOT.VALUE(4,\"__count\",\"#partner_id\",2)"
+        },
+        "D16": {
           "content": "=PIVOT.HEADER(5,\"#product_id\",2)"
         },
-        "B29": {
+        "E16": {
           "content": "=PIVOT.VALUE(5,\"__count\",\"#product_id\",2)"
         },
-        "A30": {
+        "A17": {
+          "content": "=PIVOT.HEADER(4,\"#partner_id\",3)"
+        },
+        "B17": {
+          "content": "=PIVOT.VALUE(4,\"__count\",\"#partner_id\",3)"
+        },
+        "D17": {
           "content": "=PIVOT.HEADER(5,\"#product_id\",3)"
         },
-        "B30": {
+        "E17": {
           "content": "=PIVOT.VALUE(5,\"__count\",\"#product_id\",3)"
         },
-        "A31": {
+        "A18": {
+          "content": "=PIVOT.HEADER(4,\"#partner_id\",4)"
+        },
+        "B18": {
+          "content": "=PIVOT.VALUE(4,\"__count\",\"#partner_id\",4)"
+        },
+        "D18": {
           "content": "=PIVOT.HEADER(5,\"#product_id\",4)"
         },
-        "B31": {
+        "E18": {
           "content": "=PIVOT.VALUE(5,\"__count\",\"#product_id\",4)"
         },
-        "A32": {
+        "A19": {
+          "content": "=PIVOT.HEADER(4,\"#partner_id\",5)"
+        },
+        "B19": {
+          "content": "=PIVOT.VALUE(4,\"__count\",\"#partner_id\",5)"
+        },
+        "D19": {
           "content": "=PIVOT.HEADER(5,\"#product_id\",5)"
         },
-        "B32": {
+        "E19": {
           "content": "=PIVOT.VALUE(5,\"__count\",\"#product_id\",5)"
         },
-        "A33": {
+        "A20": {
+          "content": "=PIVOT.HEADER(4,\"#partner_id\",6)"
+        },
+        "B20": {
+          "content": "=PIVOT.VALUE(4,\"__count\",\"#partner_id\",6)"
+        },
+        "D20": {
           "content": "=PIVOT.HEADER(5,\"#product_id\",6)"
         },
-        "B33": {
+        "E20": {
           "content": "=PIVOT.VALUE(5,\"__count\",\"#product_id\",6)"
         },
-        "A34": {
+        "A21": {
+          "content": "=PIVOT.HEADER(4,\"#partner_id\",7)"
+        },
+        "B21": {
+          "content": "=PIVOT.VALUE(4,\"__count\",\"#partner_id\",7)"
+        },
+        "D21": {
           "content": "=PIVOT.HEADER(5,\"#product_id\",7)"
         },
-        "B34": {
+        "E21": {
           "content": "=PIVOT.VALUE(5,\"__count\",\"#product_id\",7)"
         },
-        "A35": {
+        "A22": {
+          "content": "=PIVOT.HEADER(4,\"#partner_id\",8)"
+        },
+        "B22": {
+          "content": "=PIVOT.VALUE(4,\"__count\",\"#partner_id\",8)"
+        },
+        "D22": {
           "content": "=PIVOT.HEADER(5,\"#product_id\",8)"
         },
-        "B35": {
+        "E22": {
           "content": "=PIVOT.VALUE(5,\"__count\",\"#product_id\",8)"
         },
-        "A36": {
+        "A23": {
+          "content": "=PIVOT.HEADER(4,\"#partner_id\",9)"
+        },
+        "B23": {
+          "content": "=PIVOT.VALUE(4,\"__count\",\"#partner_id\",9)"
+        },
+        "D23": {
           "content": "=PIVOT.HEADER(5,\"#product_id\",9)"
         },
-        "B36": {
+        "E23": {
           "content": "=PIVOT.VALUE(5,\"__count\",\"#product_id\",9)"
         },
-        "A37": {
+        "A24": {
+          "content": "=PIVOT.HEADER(4,\"#partner_id\",10)"
+        },
+        "B24": {
+          "content": "=PIVOT.VALUE(4,\"__count\",\"#partner_id\",10)"
+        },
+        "D24": {
           "content": "=PIVOT.HEADER(5,\"#product_id\",10)"
         },
-        "B37": {
+        "E24": {
           "content": "=PIVOT.VALUE(5,\"__count\",\"#product_id\",10)"
         }
       },
       "styles": {
-        "A12": 1,
-        "A13:B13": 2,
-        "A26": 1,
-        "A27:B27": 2,
+        "A13": 1,
+        "D13": 1,
+        "A14:B14": 2,
+        "D14:E14": 2,
         "A1": 3
       },
       "formats": {},
-      "borders": {},
+      "borders": {
+        "A14:B14": 1,
+        "D14:E14": 1
+      },
       "conditionalFormats": [],
       "figures": [
         {
-          "id": "97fa45f4-dd56-4628-8c7c-b1df766e1eef",
+          "id": "f6d35ff7-7415-4680-9318-4b1778cdc5df",
           "x": 0,
           "y": 30,
-          "width": 220,
-          "height": 100,
+          "width": 280,
+          "height": 110,
           "tag": "chart",
           "data": {
             "type": "scorecard",
             "title": {
-              "text": "Pedidos pendientes de entrega",
+              "text": "Pedidos pendientes",
               "bold": true,
               "align": "left",
               "color": "#434343"
@@ -194,11 +209,11 @@
           }
         },
         {
-          "id": "214e0e52-822b-47d4-be08-dcd2c3a95505",
-          "x": 230,
+          "id": "8fa1aa55-2e34-48a5-92bd-5a8cfb679443",
+          "x": 300,
           "y": 30,
-          "width": 220,
-          "height": 100,
+          "width": 280,
+          "height": 110,
           "tag": "chart",
           "data": {
             "type": "scorecard",
@@ -217,11 +232,11 @@
           }
         },
         {
-          "id": "8e9d988b-6c7c-4742-b55d-5dad24ee4f7a",
-          "x": 460,
+          "id": "53cc8ea7-e1d1-4a20-a067-ddad31576c8e",
+          "x": 600,
           "y": 30,
-          "width": 220,
-          "height": 100,
+          "width": 280,
+          "height": 110,
           "tag": "chart",
           "data": {
             "type": "scorecard",
@@ -240,11 +255,11 @@
           }
         },
         {
-          "id": "2410de06-0de7-4ec9-a503-eb0f135289bb",
+          "id": "f78ff254-adcf-4f03-a6ff-8ae9277e17e7",
           "x": 0,
-          "y": 140,
-          "width": 220,
-          "height": 100,
+          "y": 155,
+          "width": 280,
+          "height": 110,
           "tag": "chart",
           "data": {
             "type": "scorecard",
@@ -263,16 +278,16 @@
           }
         },
         {
-          "id": "8f2d5c47-8a64-4470-bb74-e4dea8388e50",
-          "x": 230,
-          "y": 140,
-          "width": 220,
-          "height": 100,
+          "id": "26af3c78-6379-4891-a59f-b586fe61cf82",
+          "x": 300,
+          "y": 155,
+          "width": 280,
+          "height": 110,
           "tag": "chart",
           "data": {
             "type": "scorecard",
             "title": {
-              "text": "Valor pedidos retrasados (€)",
+              "text": "Valor pedidos retrasados",
               "bold": true,
               "align": "left",
               "color": "#434343"
@@ -282,20 +297,20 @@
             "baselineColorUp": "#00A04A",
             "baselineColorDown": "#DC6965",
             "keyValue": "Data!B7",
-            "humanize": false
+            "humanize": true
           }
         },
         {
-          "id": "dfa5854f-31c8-47db-b605-7fa4af61b7ce",
-          "x": 460,
-          "y": 140,
-          "width": 220,
-          "height": 100,
+          "id": "4e2c26c1-47dd-4742-ad99-12f07c470ed3",
+          "x": 600,
+          "y": 155,
+          "width": 280,
+          "height": 110,
           "tag": "chart",
           "data": {
             "type": "scorecard",
             "title": {
-              "text": "Valor pedidos pendientes (€)",
+              "text": "Valor pedidos pendientes",
               "bold": true,
               "align": "left",
               "color": "#434343"
@@ -305,7 +320,7 @@
             "baselineColorUp": "#00A04A",
             "baselineColorDown": "#DC6965",
             "keyValue": "Data!B8",
-            "humanize": false
+            "humanize": true
           }
         }
       ],
@@ -415,7 +430,14 @@
     "1": "0.00%",
     "2": "#,##0.00\" €\""
   },
-  "borders": {},
+  "borders": {
+    "1": {
+      "bottom": {
+        "style": "thin",
+        "color": "#CCCCCC"
+      }
+    }
+  },
   "revisionId": "START_REVISION",
   "uniqueFigureIds": true,
   "settings": {
@@ -431,7 +453,7 @@
     }
   },
   "pivots": {
-    "14450dc1-0349-4043-86b4-e7aedbd0fd83": {
+    "daca5eaa-7cff-4ac9-8abb-10f3e6139a84": {
       "type": "ODOO",
       "domain": [
         [
@@ -456,9 +478,23 @@
       "columns": [],
       "rows": [],
       "name": "Pedidos emitidos",
-      "formulaId": "1"
+      "formulaId": "1",
+      "fieldMatching": {
+        "3075a31e-c67f-4df5-8efa-8583397c80ce": {
+          "chain": "user_id",
+          "type": "many2one"
+        },
+        "ada4756d-3c65-43f6-b033-4eb6bd8ea503": {
+          "chain": "partner_id",
+          "type": "many2one"
+        },
+        "0681ad13-3a5d-4679-a990-589022f962e4": {
+          "chain": "order_line.product_id",
+          "type": "many2one"
+        }
+      }
     },
-    "2e331d16-cdef-483f-8f2a-c9916c9a9b0f": {
+    "3a0d1a4a-ac94-490f-b84a-8d6072657e3b": {
       "type": "ODOO",
       "domain": [
         [
@@ -493,9 +529,23 @@
       "columns": [],
       "rows": [],
       "name": "Pedidos pendientes de entrega",
-      "formulaId": "2"
+      "formulaId": "2",
+      "fieldMatching": {
+        "3075a31e-c67f-4df5-8efa-8583397c80ce": {
+          "chain": "user_id",
+          "type": "many2one"
+        },
+        "ada4756d-3c65-43f6-b033-4eb6bd8ea503": {
+          "chain": "partner_id",
+          "type": "many2one"
+        },
+        "0681ad13-3a5d-4679-a990-589022f962e4": {
+          "chain": "order_line.product_id",
+          "type": "many2one"
+        }
+      }
     },
-    "86b1c748-096d-47d9-802f-fc94bd3de813": {
+    "8539a19f-0b42-4d83-b4e3-36701bf2d7a0": {
       "type": "ODOO",
       "domain": [
         [
@@ -535,9 +585,23 @@
       "columns": [],
       "rows": [],
       "name": "Pedidos retrasados",
-      "formulaId": "3"
+      "formulaId": "3",
+      "fieldMatching": {
+        "3075a31e-c67f-4df5-8efa-8583397c80ce": {
+          "chain": "user_id",
+          "type": "many2one"
+        },
+        "ada4756d-3c65-43f6-b033-4eb6bd8ea503": {
+          "chain": "partner_id",
+          "type": "many2one"
+        },
+        "0681ad13-3a5d-4679-a990-589022f962e4": {
+          "chain": "order_line.product_id",
+          "type": "many2one"
+        }
+      }
     },
-    "7f0f7c75-122e-40e2-8ace-f3a35484ecd9": {
+    "1131af52-f4f6-4d23-a5d7-21016fa453b1": {
       "type": "ODOO",
       "domain": [
         [
@@ -572,9 +636,23 @@
         }
       ],
       "name": "Top clientes con pedidos retrasados",
-      "formulaId": "4"
+      "formulaId": "4",
+      "fieldMatching": {
+        "3075a31e-c67f-4df5-8efa-8583397c80ce": {
+          "chain": "user_id",
+          "type": "many2one"
+        },
+        "ada4756d-3c65-43f6-b033-4eb6bd8ea503": {
+          "chain": "partner_id",
+          "type": "many2one"
+        },
+        "0681ad13-3a5d-4679-a990-589022f962e4": {
+          "chain": "order_line.product_id",
+          "type": "many2one"
+        }
+      }
     },
-    "12e47d5d-c01b-4d86-a53a-2770c7046722": {
+    "a3317cc3-416c-4a2b-bff4-6dd8cb371495": {
       "type": "ODOO",
       "domain": [
         [
@@ -609,13 +687,55 @@
         }
       ],
       "name": "Top productos con líneas retrasadas",
-      "formulaId": "5"
+      "formulaId": "5",
+      "fieldMatching": {
+        "3075a31e-c67f-4df5-8efa-8583397c80ce": {
+          "chain": "order_id.user_id",
+          "type": "many2one"
+        },
+        "ada4756d-3c65-43f6-b033-4eb6bd8ea503": {
+          "chain": "order_id.partner_id",
+          "type": "many2one"
+        },
+        "0681ad13-3a5d-4679-a990-589022f962e4": {
+          "chain": "product_id",
+          "type": "many2one"
+        }
+      }
     }
   },
   "pivotNextId": "6",
   "customTableStyles": {},
   "odooVersion": 12,
-  "globalFilters": [],
+  "globalFilters": [
+    {
+      "id": "3075a31e-c67f-4df5-8efa-8583397c80ce",
+      "type": "relation",
+      "label": "Comercial",
+      "modelName": "res.users",
+      "defaultValue": [],
+      "defaultValueDisplayNames": [],
+      "rangeType": "year"
+    },
+    {
+      "id": "ada4756d-3c65-43f6-b033-4eb6bd8ea503",
+      "type": "relation",
+      "label": "Cliente",
+      "modelName": "res.partner",
+      "defaultValue": [],
+      "defaultValueDisplayNames": [],
+      "rangeType": "year"
+    },
+    {
+      "id": "0681ad13-3a5d-4679-a990-589022f962e4",
+      "type": "relation",
+      "label": "Producto",
+      "modelName": "product.product",
+      "defaultValue": [],
+      "defaultValueDisplayNames": [],
+      "rangeType": "year"
+    }
+  ],
   "lists": {},
   "listNextId": "1",
   "chartOdooMenusReferences": {}
