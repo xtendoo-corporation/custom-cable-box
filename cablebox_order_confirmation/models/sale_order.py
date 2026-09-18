@@ -1,4 +1,4 @@
-from odoo import models, fields, _
+from odoo import api, models, fields, _
 
 
 class SaleOrder(models.Model):
@@ -7,6 +7,25 @@ class SaleOrder(models.Model):
     # add field if not present; if present, this will use same name
     commitment_date = fields.Date(string='Commitment Date', copy=False)
     pedido_number = fields.Char(string='Nº Pedido', copy=False, readonly=True, index=True)
+
+    @api.onchange('commitment_date', 'expected_date')
+    def _onchange_commitment_date(self):
+        # commitment_date is a Date here (overridden above) while core's
+        # expected_date is a Datetime; normalize before comparing to avoid
+        # "can't compare datetime.datetime to datetime.date".
+        if self.commitment_date and self.expected_date:
+            commitment_date = fields.Datetime.to_datetime(self.commitment_date)
+            expected_date = fields.Datetime.to_datetime(self.expected_date)
+            if commitment_date < expected_date:
+                return {
+                    'warning': {
+                        'title': _('Requested date is too soon.'),
+                        'message': _(
+                            "The delivery date is sooner than the expected date."
+                            " You may be unable to honor the delivery date."
+                        ),
+                    }
+                }
 
     def action_open_import_confirmation_wizard(self):
         self.ensure_one()
