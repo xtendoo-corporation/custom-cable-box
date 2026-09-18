@@ -11,4 +11,14 @@
         <field name="active">True</field>
     </record>
 
+    <record id="ir_cron_refresh_order_delay_kpis" model="ir.cron">
+        <field name="name">Cablebox: Recalcular retraso total de pedidos</field>
+        <field name="model_id" ref="sale.model_sale_order"/>
+        <field name="state">code</field>
+        <field name="code">model._cron_refresh_order_delay_kpis()</field>
+        <field name="interval_number">1</field>
+        <field name="interval_type">days</field>
+        <field name="active">True</field>
+    </record>
+
 </odoo>

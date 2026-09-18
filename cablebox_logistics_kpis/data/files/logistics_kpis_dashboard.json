@@ -209,8 +209,31 @@
           }
         },
         {
-          "id": "8fa1aa55-2e34-48a5-92bd-5a8cfb679443",
+          "id": "d4f0a6d1-8b3c-4f2a-9d5e-1c6b7a8f9e02",
           "x": 300,
+          "y": 30,
+          "width": 280,
+          "height": 110,
+          "tag": "chart",
+          "data": {
+            "type": "scorecard",
+            "title": {
+              "text": "Pedidos totales retrasados",
+              "bold": true,
+              "align": "left",
+              "color": "#434343"
+            },
+            "background": "#FEF2F2",
+            "baselineMode": "text",
+            "baselineColorUp": "#00A04A",
+            "baselineColorDown": "#DC6965",
+            "keyValue": "Data!B9",
+            "humanize": false
+          }
+        },
+        {
+          "id": "8fa1aa55-2e34-48a5-92bd-5a8cfb679443",
+          "x": 600,
           "y": 30,
           "width": 280,
           "height": 110,
@@ -233,9 +256,9 @@
         },
         {
           "id": "53cc8ea7-e1d1-4a20-a067-ddad31576c8e",
-          "x": 600,
+          "x": 900,
           "y": 30,
-          "width": 280,
+          "width": 260,
           "height": 110,
           "tag": "chart",
           "data": {
@@ -335,7 +358,7 @@
       "id": "sheet2",
       "name": "Data",
       "colNumber": 4,
-      "rowNumber": 8,
+      "rowNumber": 9,
       "rows": {},
       "cols": {
         "0": {
@@ -375,7 +398,7 @@
           "content": "=_t(\"% pedidos retrasados\")"
         },
         "B5": {
-          "content": "=IFERROR(B3/B4,0)"
+          "content": "=IFERROR(B9/B4,0)"
         },
         "A6": {
           "content": "=_t(\"Días de retraso (media)\")"
@@ -394,6 +417,12 @@
         },
         "B8": {
           "content": "=PIVOT.VALUE(2,\"pending_delivery_value\")"
+        },
+        "A9": {
+          "content": "=_t(\"Pedidos totales retrasados\")"
+        },
+        "B9": {
+          "content": "=PIVOT.VALUE(6,\"__count\")"
         }
       },
       "styles": {},
@@ -702,9 +731,55 @@
           "type": "many2one"
         }
       }
+    },
+    "d4f0a6d1-8b3c-4f2a-9d5e-1c6b7a8f9e03": {
+      "type": "ODOO",
+      "domain": [
+        [
+          "state",
+          "not in",
+          [
+            "draft",
+            "sent",
+            "cancel"
+          ]
+        ],
+        [
+          "is_order_ever_delayed",
+          "=",
+          true
+        ]
+      ],
+      "context": {},
+      "sortedColumn": null,
+      "measures": [
+        {
+          "id": "__count",
+          "fieldName": "__count"
+        }
+      ],
+      "model": "sale.order",
+      "columns": [],
+      "rows": [],
+      "name": "Pedidos totales retrasados",
+      "formulaId": "6",
+      "fieldMatching": {
+        "3075a31e-c67f-4df5-8efa-8583397c80ce": {
+          "chain": "user_id",
+          "type": "many2one"
+        },
+        "ada4756d-3c65-43f6-b033-4eb6bd8ea503": {
+          "chain": "partner_id",
+          "type": "many2one"
+        },
+        "0681ad13-3a5d-4679-a990-589022f962e4": {
+          "chain": "order_line.product_id",
+          "type": "many2one"
+        }
+      }
     }
   },
-  "pivotNextId": "6",
+  "pivotNextId": "7",
   "customTableStyles": {},
   "odooVersion": 12,
   "globalFilters": [
