@@ -9,12 +9,16 @@ patch(QtyAtDateWidget.prototype, {
         const { data } = this.props.record;
         if (data.scheduled_date) {
             // Evaluamos si no hay suficiente físicamente hoy, pero sí habrá en la fecha esperada.
-            // Odoo recicla variables dependiendo de si el pedido está confirmado o en borrador.
-            const qty_physical = data.state === 'sale' ? data.qty_available_today : data.free_qty_today;
+            // Con el pedido confirmado, qty_available_today es lo RESERVADO (0 si el tipo de
+            // operación tiene reserva manual aunque haya stock), así que no sirve como stock
+            // físico: la cobertura es solo prevista si el movimiento depende de una entrada
+            // futura (forecast_expected_date).
+            const forecastedOnly = data.state === 'sale'
+                ? !!data.forecast_expected_date
+                : data.free_qty_today < data.qty_to_deliver;
 
             this.calcData.is_forecasted_only =
-                this.calcData.will_be_fulfilled &&
-                qty_physical < data.qty_to_deliver;
+                this.calcData.will_be_fulfilled && forecastedOnly;
 
             // Compatibilidad con otros módulos que usan `reservation_issue` para pintar ámbar.
             this.calcData.reservation_issue = this.calcData.is_forecasted_only;
